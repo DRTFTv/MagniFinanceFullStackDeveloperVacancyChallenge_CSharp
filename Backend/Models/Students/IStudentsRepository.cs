@@ -16,6 +16,8 @@ namespace Backend.Models.Students.Students
         IEnumerable<Students_SubjectsModel> GetAllStudentEnrollments();
         Students_SubjectsModel GetStudentEnrollmentByRegistrationNumber(int RegistrationNumber);
         IEnumerable<Students_SubjectsModel> GetAllStudentEnrollmentsByStudentId(int StudentId);
-        bool UpdateStudentEnrollmentById(UpdateStudentEnrollmentByIdModel EnrollStudent);
+        bool UpdateStudentEnrollmentByRegistrationNumber(UpdateStudentEnrollmentByIdModel EnrollStudent);
+        bool DeleteStudentEnrollmentByRegistrationNumber(int RegistrationNumber);
+        bool DeleteStudentEnrollmentByStudentId(int StudentId);
     }
 }

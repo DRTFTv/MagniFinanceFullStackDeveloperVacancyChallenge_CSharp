@@ -105,15 +105,37 @@ namespace Backend.Controllers
         }
 
 
-        [HttpPut("UpdateStudentEnrollmentById")]
-        public IActionResult UpdateStudentEnrollmentById([FromForm] UpdateStudentEnrollmentByIdModel EnrollStudent)
+        [HttpPut("UpdateStudentEnrollmentByRegistrationNumber")]
+        public IActionResult UpdateStudentEnrollmentByRegistrationNumber([FromForm] UpdateStudentEnrollmentByIdModel EnrollStudent)
         {
-            bool res = _repository.UpdateStudentEnrollmentById(EnrollStudent);
+            bool res = _repository.UpdateStudentEnrollmentByRegistrationNumber(EnrollStudent);
 
             if (res)
-                return Ok("Student registration changed successfully!");
+                return Ok("Student enrollment changed successfully!");
             else
                 return Ok("Error when changing student registration!");
+        }
+
+        [HttpPost("DeleteStudentEnrollmentByRegistrationNumber")]
+        public IActionResult DeleteStudentEnrollmentByRegistrationNumber([Required] int RegistrationNumber)
+        {
+            bool res = _repository.DeleteStudentEnrollmentByRegistrationNumber(RegistrationNumber);
+
+            if (res)
+                return Ok("Enrollment of deleted student successfully!");
+            else
+                return Ok("Error deleting student registration!");
+        }
+
+        [HttpPost("DeleteStudentEnrollmentByStudentId")]
+        public IActionResult DeleteStudentEnrollmentByStudentId([Required] int StudentId)
+        {
+            bool res = _repository.DeleteStudentEnrollmentByStudentId(StudentId);
+
+            if (res)
+                return Ok("Enrollment of deleted student successfully!");
+            else
+                return Ok("Error deleting student registration!");
         }
     }
 }
