@@ -1,4 +1,5 @@
 ﻿using Backend.Models.Courses;
+using Backend.Models.Grades;
 using Backend.Models.Students;
 using Backend.Models.Students.Students;
 using Backend.Models.Subjects;
@@ -27,6 +28,7 @@ namespace Backend
             services.AddScoped<ITeachersRepository, TeachersRepository>();
             services.AddScoped<ICoursesRepository, CoursesRepository>();
             services.AddScoped<ISubjectsRepository, SubjectsRepository>();
+            services.AddScoped<IGradesRepository, GradeRepository>();
         }
 
         public void Configue(WebApplication app, IWebHostEnvironment env)

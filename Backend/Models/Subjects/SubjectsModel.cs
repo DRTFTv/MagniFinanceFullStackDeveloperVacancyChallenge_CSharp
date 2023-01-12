@@ -16,10 +16,12 @@ namespace Backend.Models.Subjects
         public string Name { get; set; }
 
         [Required]
-        public int CourseId { get; set; }
+        [ForeignKey("course_id")]
+        public int? CourseId { get; set; }
 
         [Required]
-        public int TeacherId { get; set; }
+        [ForeignKey("teacher_id")]
+        public int? TeacherId { get; set; }
 
         [Required]
         public virtual CoursesModel CoursesNavigation { get; set; }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Backend.Migrations
 {
-    public partial class RenameCoursesTable : Migration
+    public partial class UpateDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -19,9 +19,9 @@ namespace Backend.Controllers
         }
 
         [HttpPost("Add")]
-        public IActionResult Add([FromForm] TeacherAddView teacher)
+        public IActionResult Add([FromForm] TeacherAddView Teacher)
         {
-            bool res = _repository.Add(teacher);
+            bool res = _repository.Add(Teacher);
 
             if (res)
                 return Ok("Successfully registered teacher!");
@@ -46,9 +46,9 @@ namespace Backend.Controllers
         }
 
         [HttpPut("UpdateById")]
-        public IActionResult UpdateById([FromForm] TeacherUpdateByIdView teacher)
+        public IActionResult UpdateById([FromForm] TeacherUpdateByIdView Teacher)
         {
-            bool res = _repository.UpdateById(teacher);
+            bool res = _repository.UpdateById(Teacher);
 
             if (res)
                 return Ok("Teacher registration changed successfully!");

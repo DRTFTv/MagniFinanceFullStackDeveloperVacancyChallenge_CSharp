@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(UniversityDbContext))]
-    [Migration("20230112000406_RenameCoursesTable")]
-    partial class RenameCoursesTable
+    [Migration("20230112021334_UpateDatabase")]
+    partial class UpateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,19 +66,22 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("registrationNumber"), 1L, 1);
 
-                    b.Property<int>("GradeId")
+                    b.Property<int?>("GradeId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("GradesNavigationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StudentId")
+                    b.Property<int?>("StudentId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("StudentsNavigationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubjectId")
+                    b.Property<int?>("SubjectId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("SubjectsNavigationId")
@@ -124,7 +127,8 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CourseId")
+                    b.Property<int?>("CourseId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("CoursesNavigationId")
@@ -135,7 +139,8 @@ namespace Backend.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("TeacherId")
+                    b.Property<int?>("TeacherId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("TeachersNavigationId")

@@ -65,3 +65,7 @@ C:\Users\dany_\Source\MagniFinanceFullStackDeveloperVacancyChallenge\Backend\bin
 C:\Users\dany_\Source\MagniFinanceFullStackDeveloperVacancyChallenge\Backend\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\dany_\Source\MagniFinanceFullStackDeveloperVacancyChallenge\Backend\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\dany_\Source\MagniFinanceFullStackDeveloperVacancyChallenge\Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\dany_\Source\MagniFinanceFullStackDeveloperVacancyChallenge\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\dany_\Source\MagniFinanceFullStackDeveloperVacancyChallenge\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\dany_\Source\MagniFinanceFullStackDeveloperVacancyChallenge\Backend\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\dany_\Source\MagniFinanceFullStackDeveloperVacancyChallenge\Backend\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

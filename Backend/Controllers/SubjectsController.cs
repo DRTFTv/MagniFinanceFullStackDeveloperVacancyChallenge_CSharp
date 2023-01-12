@@ -2,9 +2,12 @@
 using Backend.ModelView;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Backend.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class SubjectsController : ControllerBase
     {
         private ISubjectsRepository _repository;
@@ -15,9 +18,9 @@ namespace Backend.Controllers
         }
 
         [HttpPost("Add")]
-        public IActionResult Add([FromForm] SubjectAddView subject)
+        public IActionResult Add([FromForm] SubjectAddView Subject)
         {
-            bool res = _repository.Add(subject);
+            bool res = _repository.Add(Subject);
 
             if (res)
                 return Ok("Successfully registered subject!");
@@ -42,9 +45,9 @@ namespace Backend.Controllers
         }
 
         [HttpPut("UpdateById")]
-        public IActionResult UpdateById([FromForm] SubjectUpdateByIdView subject)
+        public IActionResult UpdateById([FromForm] SubjectUpdateByIdView Subject)
         {
-            bool res = _repository.UpdateById(subject);
+            bool res = _repository.UpdateById(Subject);
 
             if (res)
                 return Ok("Subject registration changed successfully!");

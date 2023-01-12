@@ -10,16 +10,19 @@ namespace Backend.Models.Students_Subjects
     public class Students_SubjectsModel
     {
         [Key]
-        public int registrationNumber { get; set; }
+        public int RegistrationNumber { get; set; }
 
         [Required]
-        public int StudentId { get; set; }
+        [ForeignKey("student_id")]
+        public int? StudentId { get; set; }
 
         [Required]
-        public int SubjectId { get; set; }
+        [ForeignKey("subject_id")]
+        public int? SubjectId { get; set; }
 
         [Required]
-        public int GradeId { get; set; }
+        [ForeignKey("grade_id")]
+        public int? GradeId { get; set; }
 
         public virtual StudentsModel StudentsNavigation { get; set; }
 

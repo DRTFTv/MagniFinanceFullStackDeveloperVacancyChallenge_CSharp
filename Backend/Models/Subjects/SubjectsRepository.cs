@@ -1,4 +1,6 @@
-﻿using Backend.ModelView;
+﻿using Backend.Models.Courses;
+using Backend.Models.Teachers;
+using Backend.ModelView;
 
 namespace Backend.Models.Subjects
 {
@@ -11,17 +13,24 @@ namespace Backend.Models.Subjects
             _universityDbContext = universityDbContext;
         }
 
-        public bool Add(SubjectAddView subject)
+        public bool Add(SubjectAddView Subject)
         {
-            if (subject == null)
+            if (Subject == null)
                 return false;
 
+            CoursesModel courseModel = _universityDbContext.Courses.Where(s => s.Id == Subject.CourseId).FirstOrDefault();
+            TeachersModel teacherModel = _universityDbContext.Teachers.Where(s => s.Id == Subject.TeacherId).FirstOrDefault();
+
+            if (courseModel == null || teacherModel == null)
+                return false;
 
             _universityDbContext.Subjects.Add(new SubjectsModel
             {
-                Name = subject.Name,
-                CourseId = subject.CourseId ?? 0,
-                TeacherId = subject.TeacherId ?? 0,
+                Name = Subject.Name,
+                CourseId = Subject.CourseId,
+                TeacherId = Subject.TeacherId,
+                CoursesNavigation = _universityDbContext.Courses.Where(s => s.Id == Subject.CourseId).FirstOrDefault(),
+                TeachersNavigation = _universityDbContext.Teachers.Where(s => s.Id == Subject.TeacherId).FirstOrDefault(),
             });
 
             _universityDbContext.SaveChanges();
@@ -39,16 +48,21 @@ namespace Backend.Models.Subjects
             return _universityDbContext.Subjects.Where(s => s.Id == Id).FirstOrDefault();
         }
 
-        public bool UpdateById(SubjectUpdateByIdView subject)
+        public bool UpdateById(SubjectUpdateByIdView Subject)
         {
-            if (subject == null)
+            if (Subject == null)
                 return false;
 
-            SubjectsModel subjectModel = _universityDbContext.Subjects.Where(s => s.Id == subject.Id).FirstOrDefault();
+            SubjectsModel subjectModel = _universityDbContext.Subjects.Where(s => s.Id == Subject.Id).FirstOrDefault();
 
-            subjectModel.Name = !string.IsNullOrEmpty(subject.Name) ? subject.Name : subjectModel.Name;
-            subjectModel.CourseId = subject.CourseId ?? subjectModel.CourseId;
-            subjectModel.TeacherId = subject.TeacherId ?? subjectModel.TeacherId;
+            if (subjectModel == null)
+                return false;
+
+            subjectModel.Name = !string.IsNullOrEmpty(Subject.Name) ? Subject.Name : subjectModel.Name;
+            subjectModel.CourseId = Subject.CourseId ?? subjectModel.CourseId;
+            subjectModel.TeacherId = Subject.TeacherId ?? subjectModel.TeacherId;
+            subjectModel.CoursesNavigation = Subject.CourseId != null ? _universityDbContext.Courses.Where(s => s.Id == Subject.CourseId).FirstOrDefault() : subjectModel.CoursesNavigation;
+            subjectModel.TeachersNavigation = Subject.TeacherId != null ? _universityDbContext.Teachers.Where(s => s.Id == Subject.TeacherId).FirstOrDefault()  : subjectModel.TeachersNavigation;
 
             _universityDbContext.Subjects.Update(subjectModel);
 
@@ -63,6 +77,9 @@ namespace Backend.Models.Subjects
                 return false;
 
             SubjectsModel subjectModel = _universityDbContext.Subjects.Where(s => s.Id == Id).FirstOrDefault();
+
+            if (subjectModel == null)
+                return false;
 
             _universityDbContext.Attach(subjectModel);
             _universityDbContext.Remove(subjectModel);

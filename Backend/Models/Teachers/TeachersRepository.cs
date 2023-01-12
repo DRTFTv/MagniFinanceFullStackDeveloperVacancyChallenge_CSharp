@@ -11,17 +11,17 @@ namespace Backend.Models.Teachers
             _universityDbContext = universityDbContext;
         }
 
-        public bool Add(TeacherAddView teacher)
+        public bool Add(TeacherAddView Teacher)
         {
-            if (teacher == null)
+            if (Teacher == null)
                 return false;
 
 
             _universityDbContext.Teachers.Add(new TeachersModel
             {
-                Name = teacher.Name,
-                BirthDate = teacher.BirthDate ?? DateTime.Now,
-                Salary = teacher.Salary ?? 0,
+                Name = Teacher.Name,
+                BirthDate = Teacher.BirthDate ?? DateTime.Now,
+                Salary = Teacher.Salary ?? 0,
             });
 
             _universityDbContext.SaveChanges();
@@ -39,16 +39,19 @@ namespace Backend.Models.Teachers
             return _universityDbContext.Teachers.Where(s => s.Id == Id).FirstOrDefault();
         }
 
-        public bool UpdateById(TeacherUpdateByIdView teacher)
+        public bool UpdateById(TeacherUpdateByIdView Teacher)
         {
-            if (teacher == null)
+            if (Teacher == null)
                 return false;
 
-            TeachersModel teacherModel = _universityDbContext.Teachers.Where(s => s.Id == teacher.Id).FirstOrDefault();
+            TeachersModel teacherModel = _universityDbContext.Teachers.Where(s => s.Id == Teacher.Id).FirstOrDefault();
 
-            teacherModel.Name = !string.IsNullOrEmpty(teacher.Name) ? teacher.Name : teacherModel.Name;
-            teacherModel.BirthDate = teacher.BirthDate ?? teacherModel.BirthDate;
-            teacherModel.Salary = teacher.Salary ?? teacherModel.Salary;
+            if(teacherModel == null)
+                return false;
+
+            teacherModel.Name = !string.IsNullOrEmpty(Teacher.Name) ? Teacher.Name : teacherModel.Name;
+            teacherModel.BirthDate = Teacher.BirthDate ?? teacherModel.BirthDate;
+            teacherModel.Salary = Teacher.Salary ?? teacherModel.Salary;
 
             _universityDbContext.Teachers.Update(teacherModel);
 
@@ -63,6 +66,9 @@ namespace Backend.Models.Teachers
                 return false;
 
             TeachersModel teacherModel = _universityDbContext.Teachers.Where(s => s.Id == Id).FirstOrDefault();
+
+            if (teacherModel == null)
+                return false;
 
             _universityDbContext.Attach(teacherModel);
             _universityDbContext.Remove(teacherModel);

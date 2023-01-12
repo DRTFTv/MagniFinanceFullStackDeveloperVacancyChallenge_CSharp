@@ -4,10 +4,10 @@ namespace Backend.Models.Courses
 {
     public interface ICoursesRepository
     {
-        bool Add(CourseAddView course);
+        bool Add(CourseAddView Course);
         IEnumerable<CoursesModel> GetAll();
         CoursesModel GetById(int Id);
-        bool UpdateById(CourseUpdateByIdView course);
+        bool UpdateById(CourseUpdateByIdView Course);
         bool DeleteById(int Id);
     }
 }

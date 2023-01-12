@@ -12,15 +12,15 @@ namespace Backend.Models.Courses
             _universityDbContext = universityDbContext;
         }
 
-        public bool Add(CourseAddView course)
+        public bool Add(CourseAddView Course)
         {
-            if (course == null)
+            if (Course == null)
                 return false;
 
 
             _universityDbContext.Courses.Add(new CoursesModel
             {
-                Name = course.Name,
+                Name = Course.Name,
             });
 
             _universityDbContext.SaveChanges();
@@ -35,17 +35,20 @@ namespace Backend.Models.Courses
 
         public CoursesModel GetById(int Id)
         {
-            return _universityDbContext.Courses.Where(s => s.Id == Id).FirstOrDefault();
+            return _universityDbContext.Courses.Where(c => c.Id == Id).FirstOrDefault();
         }
 
-        public bool UpdateById(CourseUpdateByIdView course)
+        public bool UpdateById(CourseUpdateByIdView Course)
         {
-            if (course == null)
+            if (Course == null)
                 return false;
 
-            CoursesModel courseModel = _universityDbContext.Courses.Where(s => s.Id == course.Id).FirstOrDefault();
+            CoursesModel courseModel = _universityDbContext.Courses.Where(c => c.Id == Course.Id).FirstOrDefault();
 
-            courseModel.Name = !string.IsNullOrEmpty(course.Name) ? course.Name : courseModel.Name;
+            if (courseModel == null)
+                return false;
+
+            courseModel.Name = !string.IsNullOrEmpty(Course.Name) ? Course.Name : courseModel.Name;
 
             _universityDbContext.Courses.Update(courseModel);
 
@@ -59,7 +62,10 @@ namespace Backend.Models.Courses
             if (Id <= 0)
                 return false;
 
-            CoursesModel courseModel = _universityDbContext.Courses.Where(s => s.Id == Id).FirstOrDefault();
+            CoursesModel courseModel = _universityDbContext.Courses.Where(c => c.Id == Id).FirstOrDefault();
+
+            if (courseModel == null)
+                return false;
 
             _universityDbContext.Attach(courseModel);
             _universityDbContext.Remove(courseModel);
