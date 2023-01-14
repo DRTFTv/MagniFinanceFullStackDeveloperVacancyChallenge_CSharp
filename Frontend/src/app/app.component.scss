@@ -1,0 +1,251 @@
+* {
+  /*size - position*/
+  margin: 0;
+  padding: 0;
+
+  /*style*/
+  color: var(--1-color);
+
+  /*grid*/
+
+  /*animation*/
+  transition: 0.25s;
+
+  /*var*/
+  --1-color: #f2f2f2;
+  --2-color: #6360bf;
+  --3-color: #262840;
+}
+
+.containerPage {
+  /*size - position*/
+  width: 100vw;
+  height: 100vh;
+
+  /*style*/
+  background-color: var(--1-color);
+
+  /*grid*/
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  /*size - position*/
+  min-width: 15rem;
+  height: 100vh;
+  padding: 0.5rem;
+
+  /*style*/
+  background-color: var(--3-color);
+  box-shadow: 0 0 0.5rem var(--3-color);
+
+  /*grid*/
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+
+  .sidebar-title {
+    /*size - position*/
+
+    /*style*/
+    color: var(--2-color);
+    font-size: 1.5rem;
+    font-weight: bolder;
+    letter-spacing: 0.25rem;
+    text-decoration: none;
+
+    /*grid*/
+  }
+
+  .sidebar-title:hover {
+    /*size - position*/
+
+    /*style*/
+    color: var(--1-color);
+
+    /*grid*/
+  }
+
+  .languageSwitch {
+    /*size - position*/
+
+    /*style*/
+
+    /*grid*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .languageSwitch-title {
+      /*size - position*/
+      width: 10rem;
+      padding: 0.5rem;
+
+      /*style*/
+      border: none;
+      background-color: var(--2-color);
+      border-radius: 0.5rem;
+
+      /*grid*/
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .languageSwitch-title:hover {
+      /*size - position*/
+
+      /*style*/
+      color: var(--2-color);
+      background-color: var(--1-color);
+
+      /*grid*/
+
+      i {
+        color: var(--2-color);
+      }
+    }
+
+    .languageSwitch-dropdown {
+      /*size - position*/
+      position: absolute;
+      width: 10rem;
+      margin-top: 12rem;
+
+      /*style*/
+      background-color: var(--2-color);
+      border-radius: 0.5rem;
+
+      /*grid*/
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .languageSwitch-item {
+      /*size - position*/
+      width: 100%;
+      padding: 1rem;
+
+      /*style*/
+      color: var(--1-color);
+      text-decoration: none;
+      cursor: pointer;
+
+      /*grid*/
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      align-items: center;
+      gap: 1rem;
+
+      .languageSwitch-item-icon {
+        /*size - position*/
+        width: 25%;
+
+        /*style*/
+
+        /*grid*/
+      }
+    }
+
+    .languageSwitch-item:hover {
+      /*size - position*/
+
+      /*style*/
+      background-color: var(--1-color);
+      border-radius: 0.5rem;
+
+      /*grid*/
+
+      p {
+        color: var(--2-color);
+      }
+    }
+  }
+
+  .sidebar-itens {
+    /*size - position*/
+    width: 10rem;
+
+    /*style*/
+
+    /*grid*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    .sidebar-item {
+      /*size - position*/
+      width: 100%;
+      padding: 0.5rem;
+
+      /*style*/
+      border-left: 0.15rem var(--2-color) solid;
+      color: #6360bf;
+      text-align: center;
+      font-weight: bold;
+      text-decoration: none;
+
+      /*grid*/
+    }
+    .sidebar-item:hover {
+      /*size - position*/
+      width: 100%;
+      padding: 0.5rem;
+
+      /*style*/
+      border-left: 1.5rem var(--2-color) solid;
+      color: var(--2-color);
+      background-color: var(--1-color);
+      text-align: center;
+      font-weight: bold;
+      text-decoration: none;
+
+      /*grid*/
+    }
+
+    .sidebar-item-current {
+      /*size - position*/
+
+      /*style*/
+      background-color: var(--1-color);
+
+      /*grid*/
+    }
+  }
+}
+
+.pageContent {
+  /*size - position*/
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+
+  /*style*/
+
+  /*grid*/
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .pageContent-title {
+    /*size - position*/
+
+    /*style*/
+    color: var(--3-color);
+
+    /*grid*/
+  }
+}

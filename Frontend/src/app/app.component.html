@@ -1,0 +1,47 @@
+<div class="containerPage">
+  <nav class="sidebar">
+    <a class="sidebar-title" href="" [translate]="'PROJECT_NAME'"></a>
+    <div class="languageSwitch">
+      <button class="languageSwitch-title" (click)="switchDropdown()">
+        {{ "CURRENT_LANGUAGE" | translate }}
+        <div *ngIf="dropdownIsVisible; else isVisible">
+          <i class="bi bi-caret-up-fill"></i>
+        </div>
+        <ng-template #isVisible>
+          <i class="bi bi-caret-down-fill"></i>
+        </ng-template>
+      </button>
+      <div
+        class="languageSwitch-dropdown"
+        [ngStyle]="{
+          display: dropdownIsVisible ? 'block' : 'none'
+        }"
+      >
+        <div *ngFor="let language of languageList">
+          <a class="languageSwitch-item" (click)="changeLang(language.code)">
+            <img
+              class="languageSwitch-item-icon"
+              [src]="
+                'https://abs.twimg.com/emoji/v2/svg/' + language.icon + '.svg'
+              "
+            />
+            <p
+              [translate]="
+                'SWITCH_LANGUAGES_BUTTON.' + language.name + '_LABEL'
+              "
+            ></p>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-itens">
+      <a href="#" class="sidebar-item">Students</a>
+      <a href="#" class="sidebar-item">Teachers</a>
+      <a href="#" class="sidebar-item">Courses</a>
+      <a href="#" class="sidebar-item">Subjects</a>
+      <a href="#" class="sidebar-item">Grades</a>
+    </div>
+  </nav>
+
+  <router-outlet></router-outlet>
+</div>
