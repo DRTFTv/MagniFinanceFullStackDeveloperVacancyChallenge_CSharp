@@ -48,7 +48,16 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<double>("Value")
+                    b.Property<double>("GradeFour")
+                        .HasColumnType("float");
+
+                    b.Property<double>("GradeOne")
+                        .HasColumnType("float");
+
+                    b.Property<double>("GradeThree")
+                        .HasColumnType("float");
+
+                    b.Property<double>("GradeTwo")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
@@ -58,11 +67,11 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.Students_Subjects.Students_SubjectsModel", b =>
                 {
-                    b.Property<int>("registrationNumber")
+                    b.Property<int>("RegistrationNumber")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("registrationNumber"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RegistrationNumber"), 1L, 1);
 
                     b.Property<int?>("GradeId")
                         .IsRequired()
@@ -85,7 +94,7 @@ namespace Backend.Migrations
                     b.Property<int>("SubjectsNavigationId")
                         .HasColumnType("int");
 
-                    b.HasKey("registrationNumber");
+                    b.HasKey("RegistrationNumber");
 
                     b.HasIndex("GradesNavigationId");
 

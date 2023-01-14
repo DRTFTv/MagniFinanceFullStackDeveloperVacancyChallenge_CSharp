@@ -10,6 +10,15 @@ namespace Backend.Models.Grades
         public int Id { get; set; }
 
         [Required]
-        public double Value { get; set; }
+        public double GradeOne { get; set; }
+
+        [Required]
+        public double GradeTwo { get; set; }
+
+        [Required]
+        public double GradeThree { get; set; }
+
+        [Required]
+        public double GradeFour { get; set; }
     }
 }

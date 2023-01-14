@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Backend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class StudentsController : ControllerBase
     {
         private IStudentsRepository _repository;
@@ -58,7 +58,7 @@ namespace Backend.Controllers
                 return Ok("Error when changing student registration!");
         }
 
-        [HttpPost("DeleteById")]
+        [HttpDelete("DeleteById")]
         public IActionResult DeleteById([Required] int Id)
         {
             bool res = _repository.DeleteById(Id);
@@ -116,7 +116,7 @@ namespace Backend.Controllers
                 return Ok("Error when changing student registration!");
         }
 
-        [HttpPost("DeleteStudentEnrollmentByRegistrationNumber")]
+        [HttpDelete("DeleteStudentEnrollmentByRegistrationNumber")]
         public IActionResult DeleteStudentEnrollmentByRegistrationNumber([Required] int RegistrationNumber)
         {
             bool res = _repository.DeleteStudentEnrollmentByRegistrationNumber(RegistrationNumber);
@@ -127,7 +127,7 @@ namespace Backend.Controllers
                 return Ok("Error deleting student registration!");
         }
 
-        [HttpPost("DeleteStudentEnrollmentByStudentId")]
+        [HttpDelete("DeleteStudentEnrollmentByStudentId")]
         public IActionResult DeleteStudentEnrollmentByStudentId([Required] int StudentId)
         {
             bool res = _repository.DeleteStudentEnrollmentByStudentId(StudentId);

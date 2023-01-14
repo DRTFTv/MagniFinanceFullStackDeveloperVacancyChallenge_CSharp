@@ -6,7 +6,7 @@ using Backend.Models.Grades;
 namespace Backend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class GradesController : ControllerBase
     {
         private IGradesRepository _repository;
@@ -54,7 +54,7 @@ namespace Backend.Controllers
                 return Ok("Error when changing grade registration!");
         }
 
-        [HttpPost("DeleteById")]
+        [HttpDelete("DeleteById")]
         public IActionResult DeleteById([Required] int Id)
         {
             bool res = _repository.DeleteById(Id);

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Backend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class CoursesController : Controller
     {
         private ICoursesRepository _repository;
@@ -54,7 +54,7 @@ namespace Backend.Controllers
                 return Ok("Error when changing course registration!");
         }
 
-        [HttpPost("DeleteById")]
+        [HttpDelete("DeleteById")]
         public IActionResult DeleteById([Required] int Id)
         {
             bool res = _repository.DeleteById(Id);

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Backend.Migrations
 {
-    public partial class UpateDatabase : Migration
+    public partial class Updategradesystem : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,7 +28,10 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Value = table.Column<double>(type: "float", nullable: false)
+                    GradeOne = table.Column<double>(type: "float", nullable: false),
+                    GradeTwo = table.Column<double>(type: "float", nullable: false),
+                    GradeThree = table.Column<double>(type: "float", nullable: false),
+                    GradeFour = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -97,7 +100,7 @@ namespace Backend.Migrations
                 name: "students_subjects_tb",
                 columns: table => new
                 {
-                    registrationNumber = table.Column<int>(type: "int", nullable: false)
+                    RegistrationNumber = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentId = table.Column<int>(type: "int", nullable: false),
                     SubjectId = table.Column<int>(type: "int", nullable: false),
@@ -108,7 +111,7 @@ namespace Backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_students_subjects_tb", x => x.registrationNumber);
+                    table.PrimaryKey("PK_students_subjects_tb", x => x.RegistrationNumber);
                     table.ForeignKey(
                         name: "FK_students_subjects_tb_grades_tb_GradesNavigationId",
                         column: x => x.GradesNavigationId,

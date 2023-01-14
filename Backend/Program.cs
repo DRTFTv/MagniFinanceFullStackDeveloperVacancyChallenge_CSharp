@@ -1,4 +1,5 @@
 using Backend;
+using Backend.Hubs;
 using Backend.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,4 +13,4 @@ builder.Services.AddDbContext<UniversityDbContext>(options => options.UseSqlServ
 
 var app = builder.Build();
 
-startup.Configue(app, builder.Environment);
+startup.Configure(app, builder.Environment);

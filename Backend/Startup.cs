@@ -1,4 +1,5 @@
-﻿using Backend.Models.Courses;
+﻿using Backend.Hubs;
+using Backend.Models.Courses;
 using Backend.Models.Grades;
 using Backend.Models.Students;
 using Backend.Models.Students.Students;
@@ -9,7 +10,7 @@ namespace Backend
 {
     public class Startup
     {
-        public IConfiguration _configuration{ get; }
+        public IConfiguration _configuration { get; }
 
         public Startup(IConfiguration configuration)
         {
@@ -18,10 +19,10 @@ namespace Backend
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
             services.AddMvc();
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+            services.AddControllers();
+            services.AddSignalR();
 
             ///
             services.AddScoped<IStudentsRepository, StudentsRepository>();
@@ -31,19 +32,21 @@ namespace Backend
             services.AddScoped<IGradesRepository, GradeRepository>();
         }
 
-        public void Configue(WebApplication app, IWebHostEnvironment env)
+        public void Configure(WebApplication app, IWebHostEnvironment env)
         {
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
-            app.MapControllers();
+            app.UseAuthentication();
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHub<StreamingHub>("/StreamingHub");
+            });
 
             app.Run();
         }

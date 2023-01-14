@@ -1,4 +1,5 @@
 ﻿using Backend.ModelView;
+using System.Diagnostics;
 
 namespace Backend.Models.Grades
 {
@@ -19,7 +20,10 @@ namespace Backend.Models.Grades
 
             _universityDbContext.Grades.Add(new GradesModel
             {
-                Value = Grade.Value ?? 0,
+                GradeOne = Grade.GradeOne ?? 0,
+                GradeTwo = Grade.GradeTwo ?? 0,
+                GradeThree = Grade.GradeThree ?? 0,
+                GradeFour = Grade.GradeFour ?? 0,
             });
 
             _universityDbContext.SaveChanges();
@@ -31,7 +35,10 @@ namespace Backend.Models.Grades
         {
             _universityDbContext.Grades.Add(new GradesModel
             {
-                Value = 0,
+                GradeOne = 0,
+                GradeTwo = 0,
+                GradeThree = 0,
+                GradeFour = 0,
             });
 
             _universityDbContext.SaveChanges();
@@ -59,7 +66,10 @@ namespace Backend.Models.Grades
             if (gradeModel == null)
                 return false;
 
-            gradeModel.Value = Grade.Value ?? gradeModel.Value;
+            gradeModel.GradeOne = Grade.GradeOne ?? gradeModel.GradeOne;
+            gradeModel.GradeTwo = Grade.GradeTwo ?? gradeModel.GradeTwo;
+            gradeModel.GradeThree = Grade.GradeThree ?? gradeModel.GradeThree;
+            gradeModel.GradeFour = Grade.GradeFour ?? gradeModel.GradeFour;
 
             _universityDbContext.Grades.Update(gradeModel);
 

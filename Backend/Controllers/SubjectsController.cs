@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 namespace Backend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class SubjectsController : ControllerBase
     {
         private ISubjectsRepository _repository;
@@ -55,7 +55,7 @@ namespace Backend.Controllers
                 return Ok("Error when changing subject registration!");
         }
 
-        [HttpPost("DeleteById")]
+        [HttpDelete("DeleteById")]
         public IActionResult DeleteById([Required] int Id)
         {
             bool res = _repository.DeleteById(Id);
