@@ -31,10 +31,18 @@ namespace Backend.Controllers
                 return Ok("Error registering student!");
         }
 
-        [HttpGet("ListAll")]
-        public IActionResult ListAll()
+        [HttpGet("GetAll")]
+        public IActionResult GetAll()
         {
             IEnumerable<StudentsModel> students = _repository.GetAll();
+
+            return Ok(students);
+        }
+
+        [HttpGet("HomeGetAll")]
+        public IActionResult HomeGetAll()
+        {
+            IEnumerable<StudentHomeGetAllView> students = _repository.HomeGetAll();
 
             return Ok(students);
         }
@@ -71,7 +79,8 @@ namespace Backend.Controllers
 
         ///
         [HttpPost("AddEnrollStudent")]
-        public IActionResult AddEnrollStudent([FromForm] EnrollStudentView EnrollStudent) {
+        public IActionResult AddEnrollStudent([FromForm] EnrollStudentView EnrollStudent)
+        {
             bool res = _repository.AddEnrollStudent(EnrollStudent);
 
             if (res)

@@ -1,7 +1,10 @@
+import { StudentsService } from './../../controllers/students.service';
+import { StudentsHome } from './../../models/students';
+import { SubjectsService } from './../../controllers/subjects.service';
+import { SubjectsHome } from './../../models/subjects';
 import { CoursesService } from './../../controllers/courses.service';
-import { Courses } from './../../models/courses';
+import { CoursesHome } from './../../models/courses';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -9,19 +12,30 @@ import { Observable } from 'rxjs';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  allCourses: Observable<Courses[]> | undefined;
+  allCourses!: CoursesHome[];
+  allSubjects!: SubjectsHome[];
+  allStudents!: StudentsHome[];
 
-  constructor(private coursesService: CoursesService) {}
+  constructor(
+    private coursesService: CoursesService,
+    private subjectsService: SubjectsService,
+    private studentsService: StudentsService
+  ) {}
 
   ngOnInit() {
-    this.listAll();
+    this.getALL();
   }
 
-  listAll() {
-    this.coursesService.listAll().subscribe((data: any) => {
-      console.warn(data);
+  getALL() {
+    this.coursesService.homeGetAll().subscribe((res) => {
+      this.allCourses = res;
     });
-    console.warn(this.coursesService.getById(1));
-    console.warn(this.allCourses);
+    this.subjectsService.homeGetAll().subscribe((res) => {
+      this.allSubjects = res;
+    });
+    this.studentsService.homeGetAll().subscribe((res) => {
+      console.warn(res);
+      this.allStudents = res;
+    });
   }
 }

@@ -29,8 +29,8 @@ namespace Backend.Controllers
                 return Ok("Error registering teacher!");
         }
 
-        [HttpGet("ListAll")]
-        public IActionResult ListAll()
+        [HttpGet("GetAll")]
+        public IActionResult GetAll()
         {
             IEnumerable<TeachersModel> teachers = _repository.GetAll();
 

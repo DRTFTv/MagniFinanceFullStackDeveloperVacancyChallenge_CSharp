@@ -1,7 +1,7 @@
 export interface Grades {
-  Id: number;
-  GradeOne: number;
-  GradeTwo: number;
-  GradeThree: number;
-  GradeFour: number;
+  id: number;
+  gradeOne: number;
+  gradeTwo: number;
+  gradeThree: number;
+  gradeFour: number;
 }

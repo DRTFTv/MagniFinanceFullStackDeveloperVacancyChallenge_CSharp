@@ -6,6 +6,7 @@ namespace Backend.Models.Courses
     {
         bool Add(CourseAddView Course);
         IEnumerable<CoursesModel> GetAll();
+        IEnumerable<CourseHomeGetAllView> HomeGetAll();
         CoursesModel GetById(int Id);
         bool UpdateById(CourseUpdateByIdView Course);
         bool DeleteById(int Id);

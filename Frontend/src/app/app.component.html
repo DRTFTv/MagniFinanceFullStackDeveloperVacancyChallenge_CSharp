@@ -35,12 +35,43 @@
       </div>
     </div>
     <div class="sidebar-itens">
-      <p>Pages:</p>
-      <a href="#" class="sidebar-item">Students</a>
-      <a href="#" class="sidebar-item">Teachers</a>
-      <a href="#" class="sidebar-item">Courses</a>
-      <a href="#" class="sidebar-item">Subjects</a>
-      <a href="#" class="sidebar-item">Grades</a>
+      <p>{{ "SIDEBAR.PAGES" | translate }}</p>
+      <a
+        [routerLink]="['']"
+        [ngClass]="{ 'sidebar-item-current': currentRoute == '/' }"
+        class="sidebar-item"
+        >{{ "ROUTES.HOME" | translate }}</a
+      >
+      <a
+        [routerLink]="['/students']"
+        [ngClass]="{ 'sidebar-item-current': currentRoute == '/students' }"
+        class="sidebar-item"
+        >{{ "ROUTES.STUDENTS" | translate }}</a
+      >
+      <a
+        [routerLink]="['/teachers']"
+        [ngClass]="{ 'sidebar-item-current': currentRoute == '/teachers' }"
+        class="sidebar-item"
+        >{{ "ROUTES.TEACHERS" | translate }}</a
+      >
+      <a
+        [routerLink]="['/courses']"
+        [ngClass]="{ 'sidebar-item-current': currentRoute == '/courses' }"
+        class="sidebar-item"
+        >{{ "ROUTES.COURSES" | translate }}</a
+      >
+      <a
+        [routerLink]="['/subjects']"
+        [ngClass]="{ 'sidebar-item-current': currentRoute == '/subjects' }"
+        class="sidebar-item"
+        >{{ "ROUTES.SUBJECTS" | translate }}</a
+      >
+      <a
+        [routerLink]="['/grades']"
+        [ngClass]="{ 'sidebar-item-current': currentRoute == '/grades' }"
+        class="sidebar-item"
+        >{{ "ROUTES.GRADES" | translate }}</a
+      >
     </div>
   </nav>
 

@@ -1,5 +1,8 @@
-﻿using Backend.Models.Students;
+﻿using Backend.Models.Grades;
+using Backend.Models.Students;
+using Backend.Models.Teachers;
 using Backend.ModelView;
+using Newtonsoft.Json.Linq;
 
 namespace Backend.Models.Courses
 {
@@ -31,6 +34,53 @@ namespace Backend.Models.Courses
         public IEnumerable<CoursesModel> GetAll()
         {
             return _universityDbContext.Courses;
+        }
+
+        public IEnumerable<CourseHomeGetAllView> HomeGetAll()
+        {
+            List<CourseHomeGetAllView> courses = new List<CourseHomeGetAllView>();
+
+            _universityDbContext.Courses.ToList().ForEach(c =>
+            {
+                List<StudentsModel> numberOfStudents = new List<StudentsModel>();
+                List<TeachersModel> numberOfTeachers = new List<TeachersModel>();
+                List<GradesModel> grades = new List<GradesModel>();
+                double dividend = 0;
+
+
+                _universityDbContext.Subjects.ToList().ForEach(s =>
+                {
+                    if (numberOfTeachers.Where(not => not.Id == s.TeacherId).FirstOrDefault() == null)
+                        numberOfTeachers.Add(_universityDbContext.Teachers.Where(t => t.Id == s.TeacherId).FirstOrDefault());
+                });
+
+                _universityDbContext.Subjects.Where(s => s.CourseId == c.Id).ToList().ForEach(s =>
+                {
+                    _universityDbContext.Students_Subjects.Where(ss => ss.SubjectId == s.Id).ToList().ForEach(ss =>
+                    {
+                        if (numberOfStudents.Where(nos => nos.Id == ss.StudentId).FirstOrDefault() == null)
+                            numberOfStudents.Add(_universityDbContext.Students.Where(s => s.Id == ss.StudentId).FirstOrDefault());
+                        grades.Add(_universityDbContext.Grades.Where(g => g.Id == ss.GradeId).FirstOrDefault());
+                    });
+                });
+
+
+                grades.ForEach(g =>
+                {
+                    dividend += g.GradeOne + g.GradeTwo + g.GradeThree + g.GradeFour;
+                });
+
+                courses.Add(new CourseHomeGetAllView()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    NumberOfTeachers = numberOfTeachers.Count(),
+                    NumberOfStudents = numberOfStudents.Count(),
+                    GradeAvarege = dividend / grades.Count(),
+                });
+            });
+
+            return courses;
         }
 
         public CoursesModel GetById(int Id)

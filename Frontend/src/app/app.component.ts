@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -8,9 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private translate: TranslateService) {
-    translate.setDefaultLang('pt');
-  }
+  currentRoute: string | undefined;
 
   languageList = [
     { code: 'pt', name: 'PT', icon: '1f1f5-1f1f9' },
@@ -18,6 +17,16 @@ export class AppComponent {
   ];
 
   dropdownIsVisible = false;
+
+  constructor(private translate: TranslateService, private router: Router) {
+    translate.setDefaultLang('pt');
+
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+      }
+    });
+  }
 
   switchDropdown() {
     this.dropdownIsVisible = !this.dropdownIsVisible;

@@ -266,12 +266,44 @@
 .tableContainer {
   /*size - position*/
   width: 100%;
+  height: 100%;
   padding: 0.5rem;
 
   /*style*/
   background-color: var(--2-color);
   box-shadow: 0 0 0.25rem var(--2-color);
   border-radius: 0.5rem;
+
+  /*grid*/
+}
+
+.tableContainer-title {
+  /*size - position*/
+  margin-bottom: 0.5rem;
+
+  /*style*/
+
+  /*grid*/
+}
+
+.tableContainer-addButton {
+  /*size - position*/
+  padding: 0.5rem;
+
+  /*style*/
+  border: 0.15rem var(--1-color) solid;
+  background-color: transparent;
+  border-radius: 0.5rem;
+
+  /*grid*/
+}
+
+.tableContainer-addButton:hover {
+  /*size - position*/
+
+  /*style*/
+  background-color: var(--1-color);
+  color: var(--2-color);
 
   /*grid*/
 }
@@ -303,9 +335,7 @@
   padding: 0.5rem;
 
   /*style*/
-  border-bottom: 0.15rem var(--1-color) solid;
-  border-left: 0.15rem var(--3-color) solid;
-  border-right: 0.15rem var(--3-color) solid;
+  border: 0.15rem var(--3-color) solid;
 
   /*grid*/
 }

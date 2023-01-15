@@ -1,6 +1,16 @@
 export interface Subjects {
-  Id: number;
-  Name: string;
-  CourseId: number;
-  TeacherId: number;
+  id: number;
+  name: string;
+  courseId: number;
+  teacherId: number;
+}
+
+export interface SubjectsHome {
+  id: number;
+  name: string;
+  teacherName: string;
+  teacherBirthDate: Date;
+  teacherSalary: number;
+  numberOfStudents: number;
+  gradeAvarege: number;
 }

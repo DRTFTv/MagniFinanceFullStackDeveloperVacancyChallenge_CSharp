@@ -1,6 +1,6 @@
 export interface Teachers {
-  Id: number;
-  Name: string;
-  BirthDate: Date;
-  Salary: number;
+  id: number;
+  name: string;
+  birthDate: Date;
+  salary: number;
 }

@@ -7,6 +7,7 @@ namespace Backend.Models.Students.Students
     {
         bool Add(StudentAddView Student);
         IEnumerable<StudentsModel> GetAll();
+        IEnumerable<StudentHomeGetAllView> HomeGetAll();
         StudentsModel GetById(int Id);
         bool UpdateById(StudentUpdateByIdView Student);
         bool DeleteById(int Id);

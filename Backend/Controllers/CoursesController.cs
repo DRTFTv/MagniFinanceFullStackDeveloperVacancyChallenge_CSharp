@@ -27,10 +27,18 @@ namespace Backend.Controllers
                 return Ok("Error registering course!");
         }
 
-        [HttpGet("ListAll")]
-        public IActionResult ListAll()
+        [HttpGet("GetAll")]
+        public IActionResult GetAll()
         {
             IEnumerable<CoursesModel> courses = _repository.GetAll();
+
+            return Ok(courses);
+        }
+
+        [HttpGet("HomeGetAll")]
+        public IActionResult HomeGetAll()
+        {
+            IEnumerable<CourseHomeGetAllView> courses = _repository.HomeGetAll();
 
             return Ok(courses);
         }

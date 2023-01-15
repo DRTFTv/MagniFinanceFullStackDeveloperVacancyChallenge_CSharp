@@ -1,11 +1,14 @@
 ﻿
+using Backend.Models.Courses;
 using Backend.Models.Grades;
 using Backend.Models.Students.Students;
 using Backend.Models.Students_Subjects;
 using Backend.Models.Subjects;
+using Backend.Models.Teachers;
 using Backend.ModelView;
 using Microsoft.Data.SqlClient.DataClassification;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Backend.Models.Students
 {
@@ -14,7 +17,8 @@ namespace Backend.Models.Students
         private readonly UniversityDbContext _universityDbContext;
         private IGradesRepository _grades;
 
-        public StudentsRepository(UniversityDbContext universityDbContext, IGradesRepository grades) {
+        public StudentsRepository(UniversityDbContext universityDbContext, IGradesRepository grades)
+        {
             _universityDbContext = universityDbContext;
             _grades = grades;
         }
@@ -39,6 +43,42 @@ namespace Backend.Models.Students
         public IEnumerable<StudentsModel> GetAll()
         {
             return _universityDbContext.Students;
+        }
+
+        public IEnumerable<StudentHomeGetAllView> HomeGetAll()
+        {
+            List<StudentHomeGetAllView> students = new List<StudentHomeGetAllView>();
+
+            _universityDbContext.Students.ToList().ForEach(c =>
+            {
+                List<GradeForDiscipline> gradeForDiscipline = new List<GradeForDiscipline>();
+
+                List<Students_SubjectsModel> students_SubjectsModel = GetAllStudentEnrollmentsByStudentId(c.Id).ToList();
+
+                students_SubjectsModel.ForEach(ss =>
+                {
+                    GradesModel grades = _universityDbContext.Grades.Where(g => g.Id == ss.GradeId).FirstOrDefault();
+
+                    gradeForDiscipline.Add(new GradeForDiscipline()
+                    {
+                        SubjectName = _universityDbContext.Subjects.Where(s => s.Id == ss.SubjectId).FirstOrDefault().Name,
+                        GradeOne = grades.GradeOne,
+                        GradeTwo = grades.GradeTwo,
+                        GradeThree = grades.GradeThree,
+                        GradeFour = grades.GradeFour,
+                        GradeAvarege = grades.GradeOne + grades.GradeTwo + grades.GradeThree + grades.GradeFour / 4,
+                    });
+                });
+
+                students.Add(new StudentHomeGetAllView()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Grades = gradeForDiscipline,
+                });
+            });
+
+            return students;
         }
 
         public StudentsModel GetById(int Id)
@@ -68,7 +108,7 @@ namespace Backend.Models.Students
 
         public bool DeleteById(int Id)
         {
-            if(Id <= 0)
+            if (Id <= 0)
                 return false;
 
             StudentsModel studentModel = _universityDbContext.Students.Where(s => s.Id == Id).FirstOrDefault();
@@ -92,13 +132,20 @@ namespace Backend.Models.Students
 
             int gradeId = _grades.AddReturnId();
 
+            StudentsModel studentsModel = _universityDbContext.Students.Where(s => s.Id == EnrollStudent.StudentId).FirstOrDefault();
+            SubjectsModel subjectsModel = _universityDbContext.Subjects.Where(s => s.Id == EnrollStudent.SubjectId).FirstOrDefault();
+            GradesModel gradesModel = _universityDbContext.Grades.Where(s => s.Id == gradeId).FirstOrDefault();
+
+            if (studentsModel == null || subjectsModel == null || gradesModel == null)
+                return false;
+
             _universityDbContext.Students_Subjects.Add(new Students_SubjectsModel
             {
                 StudentId = EnrollStudent.StudentId,
                 SubjectId = EnrollStudent.SubjectId,
                 GradeId = gradeId,
-                StudentsNavigation = _universityDbContext.Students.Where(s => s.Id == EnrollStudent.StudentId).FirstOrDefault(),
-                SubjectsNavigation = _universityDbContext.Subjects.Where(s => s.Id == EnrollStudent.SubjectId).FirstOrDefault(),
+                StudentsNavigation = studentsModel,
+                SubjectsNavigation = subjectsModel,
                 GradesNavigation = _universityDbContext.Grades.Where(g => g.Id == gradeId).FirstOrDefault()
             });
 

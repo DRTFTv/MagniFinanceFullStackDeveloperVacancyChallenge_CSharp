@@ -1,4 +1,4 @@
-import { Students } from './../models/students';
+import { Students, StudentsHome } from './../models/students';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, retry } from 'rxjs';
@@ -11,22 +11,31 @@ export class StudentsService {
   constructor(private http: HttpClient, private globalService: GlobalService) {}
 
   add(Students: Students): Observable<Students> {
-    const apiURL = `${this.globalService.URL}/Add`;
+    const apiURL = `${this.globalService.URL}/Students/Add`;
+
     return this.http
       .post<Students>(apiURL, Students)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 
-  listAll(): Observable<Students[]> {
-    const apiURL = `${this.globalService.URL}/ListAll`;
+  getAll(): Observable<Students[]> {
+    const apiURL = `${this.globalService.URL}/Students/GetAll`;
 
     return this.http
       .get<Students[]>(apiURL)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 
+  homeGetAll(): Observable<StudentsHome[]> {
+    const apiURL = `${this.globalService.URL}/Students/HomeGetAll`;
+
+    return this.http
+      .get<StudentsHome[]>(apiURL)
+      .pipe(retry(1), catchError(this.globalService.errorHandler));
+  }
+
   getById(Id: number): Observable<Students> {
-    const apiURL = `${this.globalService.URL}/GetById/${Id}`;
+    const apiURL = `${this.globalService.URL}/Students/GetById/${Id}`;
 
     return this.http
       .get<Students>(apiURL)
@@ -34,7 +43,7 @@ export class StudentsService {
   }
 
   updateById(Students: Students): Observable<Students> {
-    const apiURL = `${this.globalService.URL}/UpdateById`;
+    const apiURL = `${this.globalService.URL}/Students/UpdateById`;
 
     return this.http
       .put<Students>(apiURL, Students)
@@ -42,7 +51,7 @@ export class StudentsService {
   }
 
   deleteById(Id: number): Observable<Students> {
-    const apiURL = `${this.globalService.URL}/DeleteById/${Id}`;
+    const apiURL = `${this.globalService.URL}/Students/DeleteById/${Id}`;
 
     return this.http
       .delete<Students>(apiURL)

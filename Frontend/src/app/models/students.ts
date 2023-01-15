@@ -1,5 +1,20 @@
 export interface Students {
-  Id: number;
-  Name: string;
-  BirthDate: Date;
+  id: number;
+  name: string;
+  birthDate: Date;
+}
+
+export interface StudentsHome {
+  id: number;
+  name: string;
+  grades: gradeForDiscipline[];
+}
+
+export interface gradeForDiscipline {
+  subjectName: string;
+  gradeOne: number;
+  gradeTwo: number;
+  gradeThree: number;
+  gradeFour: number;
+  gradeAvarege: number;
 }

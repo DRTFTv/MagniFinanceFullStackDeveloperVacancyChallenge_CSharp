@@ -28,10 +28,18 @@ namespace Backend.Controllers
                 return Ok("Error registering subject!");
         }
 
-        [HttpGet("ListAll")]
-        public IActionResult ListAll()
+        [HttpGet("GetAll")]
+        public IActionResult GetAll()
         {
             IEnumerable<SubjectsModel> subjects = _repository.GetAll();
+
+            return Ok(subjects);
+        }
+
+        [HttpGet("HomeGetAll")]
+        public IActionResult HomeGetAll()
+        {
+            IEnumerable<SubjectHomeGetAllView> subjects = _repository.HomeGetAll();
 
             return Ok(subjects);
         }

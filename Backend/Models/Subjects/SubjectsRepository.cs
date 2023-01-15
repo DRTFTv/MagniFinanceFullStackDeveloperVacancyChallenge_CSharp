@@ -1,4 +1,6 @@
 ﻿using Backend.Models.Courses;
+using Backend.Models.Grades;
+using Backend.Models.Students;
 using Backend.Models.Teachers;
 using Backend.ModelView;
 
@@ -29,8 +31,8 @@ namespace Backend.Models.Subjects
                 Name = Subject.Name,
                 CourseId = Subject.CourseId,
                 TeacherId = Subject.TeacherId,
-                CoursesNavigation = _universityDbContext.Courses.Where(s => s.Id == Subject.CourseId).FirstOrDefault(),
-                TeachersNavigation = _universityDbContext.Teachers.Where(s => s.Id == Subject.TeacherId).FirstOrDefault(),
+                CoursesNavigation = courseModel,
+                TeachersNavigation = teacherModel,
             });
 
             _universityDbContext.SaveChanges();
@@ -41,6 +43,49 @@ namespace Backend.Models.Subjects
         public IEnumerable<SubjectsModel> GetAll()
         {
             return _universityDbContext.Subjects;
+        }
+
+        public IEnumerable<SubjectHomeGetAllView> HomeGetAll()
+        {
+            List<SubjectHomeGetAllView> subjects = new List<SubjectHomeGetAllView>();
+
+            _universityDbContext.Subjects.ToList().ForEach(s =>
+            {
+                List<StudentsModel> numberOfStudents = new List<StudentsModel>();
+                List<GradesModel> grades = new List<GradesModel>();
+                double dividend = 0;
+
+                TeachersModel teacher = _universityDbContext.Teachers.Where(st => st.Id == s.TeacherId).FirstOrDefault();
+
+                _universityDbContext.Subjects.Where(s => s.CourseId == s.Id).ToList().ForEach(s =>
+                {
+                    _universityDbContext.Students_Subjects.Where(ss => ss.SubjectId == s.Id).ToList().ForEach(ss =>
+                    {
+                        if (numberOfStudents.Where(nos => nos.Id == ss.StudentId).FirstOrDefault() == null)
+                            numberOfStudents.Add(_universityDbContext.Students.Where(s => s.Id == ss.StudentId).FirstOrDefault());
+                        grades.Add(_universityDbContext.Grades.Where(g => g.Id == ss.GradeId).FirstOrDefault());
+                    });
+                });
+
+
+                grades.ForEach(g =>
+                {
+                    dividend += g.GradeOne + g.GradeTwo + g.GradeThree + g.GradeFour;
+                });
+
+                subjects.Add(new SubjectHomeGetAllView()
+                {
+                    Id = s.Id,
+                    Name = s.Name,
+                    TeacherName = teacher.Name,
+                    TeacherBirthDate = teacher.BirthDate,
+                    TeacherSalary = teacher.Salary,
+                    NumberOfStudents = numberOfStudents.Count(),
+                    GradeAvarege = dividend / grades.Count(),
+                });
+            });
+
+            return subjects;
         }
 
         public SubjectsModel GetById(int Id)

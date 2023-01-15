@@ -1,28 +1,143 @@
 <div class="page">
-  <h1 class="page-title">home works!</h1>
+  <h1 class="page-title">{{ "ROUTES.HOME" | translate }}</h1>
 
   <div class="content">
     <div class="tableContainer">
-      <table class="tableContainer-table">
+      <h2 class="tableContainer-title">
+        {{ "TABLES.TITLES.LIST_OF_COURSES" | translate }}
+      </h2>
+      <button class="tableContainer-addButton" *ngIf="!allCourses">
+        {{ "TABLES.BUTTONS.ALERT_ADD" | translate }}
+      </button>
+      <table class="tableContainer-table" *ngIf="allCourses">
         <tr>
-          <th class="tableContainer-table-th">a</th>
-          <th class="tableContainer-table-th">a</th>
-          <th class="tableContainer-table-th">a</th>
-          <th class="tableContainer-table-th">a</th>
+          <th class="tableContainer-table-th">Id</th>
+          <th class="tableContainer-table-th">
+            {{ "TABLES.COLUMN_NAMES.NAME" | translate }}
+          </th>
+          <th class="tableContainer-table-th">
+            {{ "TABLES.COLUMN_NAMES.NUMBER_OF_TEACHERS" | translate }}
+          </th>
+          <th class="tableContainer-table-th">
+            {{ "TABLES.COLUMN_NAMES.NUMBER_OF_STUDENTS" | translate }}
+          </th>
+          <th class="tableContainer-table-th">
+            {{ "TABLES.COLUMN_NAMES.GRADE_AVARAGE" | translate }}
+          </th>
         </tr>
-        <tr>
-          <td class="tableContainer-table-td">a</td>
-          <td class="tableContainer-table-td">a</td>
-          <td class="tableContainer-table-td">a</td>
-          <td class="tableContainer-table-td">a</td>
+        <tr *ngFor="let course of allCourses">
+          <td class="tableContainer-table-td">{{ course.id }}</td>
+          <td class="tableContainer-table-td">{{ course.name }}</td>
+          <td class="tableContainer-table-td">{{ course.numberOfTeachers }}</td>
+          <td class="tableContainer-table-td">{{ course.numberOfStudents }}</td>
+          <td class="tableContainer-table-td">{{ course.gradeAvarege }}</td>
         </tr>
       </table>
     </div>
 
-    <div class="statisticsGroup">
-      <div class="statisticsGroup-item">1</div>
-      <div class="statisticsGroup-item">2</div>
-      <div class="statisticsGroup-item">3</div>
+    <div class="tableContainer">
+      <h2 class="tableContainer-title">
+        {{ "TABLES.TITLES.LIST_OF_SUBJECTS" | translate }}
+      </h2>
+      <button class="tableContainer-addButton" *ngIf="!allSubjects">
+        {{ "TABLES.BUTTONS.ALERT_ADD" | translate }}
+      </button>
+      <table class="tableContainer-table" *ngIf="allSubjects">
+        <tr>
+          <th class="tableContainer-table-th">Id</th>
+          <th class="tableContainer-table-th">
+            {{ "TABLES.COLUMN_NAMES.NAME" | translate }}
+          </th>
+          <th class="tableContainer-table-th">
+            {{ "TABLES.COLUMN_NAMES.TEACHER_INFORMATION" | translate }}
+          </th>
+          <th class="tableContainer-table-th">
+            {{ "TABLES.COLUMN_NAMES.NUMBER_OF_STUDENTS" | translate }}
+          </th>
+          <th class="tableContainer-table-th">
+            {{ "TABLES.COLUMN_NAMES.GRADE_AVARAGE" | translate }}
+          </th>
+        </tr>
+        <tr *ngFor="let subject of allSubjects">
+          <td class="tableContainer-table-td">{{ subject.id }}</td>
+          <td class="tableContainer-table-td">{{ subject.name }}</td>
+          <td class="tableContainer-table-td">
+            {{ "TABLES.VALUE_FORMATS.NAME" | translate }}
+            {{ subject.teacherName }}<br />{{
+              "TABLES.VALUE_FORMATS.BIRTHDATE" | translate
+            }}
+            {{ subject.teacherBirthDate | date }} <br />{{
+              "TABLES.VALUE_FORMATS.SALARY" | translate
+            }}
+            {{ subject.teacherSalary }}
+          </td>
+          <td class="tableContainer-table-td">
+            {{ subject.numberOfStudents }}
+          </td>
+
+          <td class="tableContainer-table-td">{{ subject.gradeAvarege }}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="tableContainer">
+      <h2 class="tableContainer-title">
+        {{ "TABLES.TITLES.LIST_OF_STUDENTS" | translate }}
+      </h2>
+      <button class="tableContainer-addButton" *ngIf="!allStudents">
+        {{ "TABLES.BUTTONS.ALERT_ADD" | translate }}
+      </button>
+      <table class="tableContainer-table" *ngIf="allStudents">
+        <tr>
+          <th class="tableContainer-table-th">Id</th>
+          <th class="tableContainer-table-th">
+            {{ "TABLES.COLUMN_NAMES.NAME" | translate }}
+          </th>
+          <th class="tableContainer-table-th">
+            {{ "TABLES.COLUMN_NAMES.GRADE_TABLE" | translate }}
+          </th>
+        </tr>
+        <tr *ngFor="let student of allStudents">
+          <td class="tableContainer-table-td">{{ student.id }}</td>
+          <td class="tableContainer-table-td">{{ student.name }}</td>
+          <td class="tableContainer-table-td">
+            <Table class="tableContainer-table">
+              <tr>
+                <th class="tableContainer-table-th">
+                  {{ "TABLES.COLUMN_NAMES.SUBJECTS" | translate }}
+                </th>
+                <th class="tableContainer-table-th">
+                  {{ "TABLES.COLUMN_NAMES.GRADE" | translate }} 1
+                </th>
+                <th class="tableContainer-table-th">
+                  {{ "TABLES.COLUMN_NAMES.GRADE" | translate }} 2
+                </th>
+                <th class="tableContainer-table-th">
+                  {{ "TABLES.COLUMN_NAMES.GRADE" | translate }} 3
+                </th>
+                <th class="tableContainer-table-th">
+                  {{ "TABLES.COLUMN_NAMES.GRADE" | translate }} 4
+                </th>
+                <th class="tableContainer-table-th">
+                  {{ "TABLES.COLUMN_NAMES.GRADE_AVARAGE" | translate }}
+                </th>
+              </tr>
+              <tr *ngFor="let grades of student.grades">
+                <td class="tableContainer-table-td">
+                  {{ grades.subjectName }}
+                </td>
+                <td class="tableContainer-table-td">{{ grades.gradeOne }}</td>
+                <td class="tableContainer-table-td">{{ grades.gradeTwo }}</td>
+                <td class="tableContainer-table-td">{{ grades.gradeThree }}</td>
+                <td class="tableContainer-table-td">{{ grades.gradeFour }}</td>
+                <td class="tableContainer-table-td">
+                  {{ grades.gradeAvarege }}
+                </td>
+              </tr>
+            </Table>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>

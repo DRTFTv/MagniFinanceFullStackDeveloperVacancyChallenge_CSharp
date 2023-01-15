@@ -27,8 +27,8 @@ namespace Backend.Controllers
                 return Ok("Error registering grade!");
         }
 
-        [HttpGet("ListAll")]
-        public IActionResult ListAll()
+        [HttpGet("GetAll")]
+        public IActionResult GetAll()
         {
             IEnumerable<GradesModel> grades = _repository.GetAll();
 
