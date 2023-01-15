@@ -24,6 +24,14 @@ namespace Backend
             services.AddControllers();
             services.AddSignalR();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("EnableCORS", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().Build();
+                });
+            });
+
             ///
             services.AddScoped<IStudentsRepository, StudentsRepository>();
             services.AddScoped<ITeachersRepository, TeachersRepository>();
@@ -41,6 +49,8 @@ namespace Backend
             app.UseAuthentication();
 
             app.UseRouting();
+
+            app.UseCors("EnableCORS");
 
             app.UseEndpoints(endpoints =>
             {

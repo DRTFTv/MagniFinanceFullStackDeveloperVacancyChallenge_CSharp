@@ -31,7 +31,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
   ],
   providers: [HttpClientModule, StudentsService],
-  bootstrap: [AppComponent, HomeComponent, StudentsComponent],
+  bootstrap: [AppComponent],
   exports: [RouterModule],
 })
 export class AppModule {}

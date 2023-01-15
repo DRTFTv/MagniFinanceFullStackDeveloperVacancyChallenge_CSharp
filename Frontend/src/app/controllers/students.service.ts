@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class StudentsService {
-  URL = 'https://localhost:8080/api/';
+  URL = 'https://localhost:8080/api/Students';
 
   constructor(private http: HttpClient) {}
 
@@ -16,10 +16,10 @@ export class StudentsService {
     return this.http.post<Students>(apiURL, Students);
   }
 
-  listAll(): Observable<Students> {
+  listAll(): Observable<Students[]> {
     const apiURL = `${this.URL}/ListAll`;
 
-    return this.http.get<Students>(apiURL);
+    return this.http.get<Students[]>(apiURL);
   }
 
   getById(Id: number): Observable<Students> {
