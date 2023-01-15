@@ -18,7 +18,10 @@ export class HomeComponent implements OnInit {
   }
 
   listAll() {
-    this.allCourses = this.coursesService.listAll();
+    this.coursesService.listAll().subscribe((data: any) => {
+      console.warn(data);
+    });
+    console.warn(this.coursesService.getById(1));
     console.warn(this.allCourses);
   }
 }

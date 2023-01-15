@@ -35,7 +35,7 @@ namespace Backend.Controllers
             return Ok(grades);
         }
 
-        [HttpGet("GetById")]
+        [HttpGet("GetById/{Id}")]
         public IActionResult GetById([Required] int Id)
         {
             GradesModel grade = _repository.GetById(Id);
@@ -54,7 +54,7 @@ namespace Backend.Controllers
                 return Ok("Error when changing grade registration!");
         }
 
-        [HttpDelete("DeleteById")]
+        [HttpDelete("DeleteById/{Id}")]
         public IActionResult DeleteById([Required] int Id)
         {
             bool res = _repository.DeleteById(Id);

@@ -1,4 +1,4 @@
-import { Students } from './../models/students';
+import { Subjects } from './../models/subjects';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, retry } from 'rxjs';
@@ -7,45 +7,44 @@ import { GlobalService } from './global.service';
 @Injectable({
   providedIn: 'root',
 })
-export class StudentsService {
+export class SubjectsService {
   constructor(private http: HttpClient, private globalService: GlobalService) {}
 
-  add(Students: Students): Observable<Students> {
+  add(Subjects: Subjects): Observable<Subjects> {
     const apiURL = `${this.globalService.URL}/Add`;
     return this.http
-      .post<Students>(apiURL, Students)
+      .post<Subjects>(apiURL, Subjects)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 
-  listAll(): Observable<Students[]> {
+  listAll(): Observable<Subjects[]> {
     const apiURL = `${this.globalService.URL}/ListAll`;
-
     return this.http
-      .get<Students[]>(apiURL)
+      .get<Subjects[]>(apiURL)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 
-  getById(Id: number): Observable<Students> {
+  getById(Id: number): Observable<Subjects> {
     const apiURL = `${this.globalService.URL}/GetById/${Id}`;
 
     return this.http
-      .get<Students>(apiURL)
+      .get<Subjects>(apiURL, this.globalService.httpOptions)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 
-  updateById(Students: Students): Observable<Students> {
+  updateById(Subjects: Subjects): Observable<Subjects> {
     const apiURL = `${this.globalService.URL}/UpdateById`;
 
     return this.http
-      .put<Students>(apiURL, Students)
+      .put<Subjects>(apiURL, Subjects, this.globalService.httpOptions)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 
-  deleteById(Id: number): Observable<Students> {
+  deleteById(Id: number): Observable<Subjects> {
     const apiURL = `${this.globalService.URL}/DeleteById/${Id}`;
 
     return this.http
-      .delete<Students>(apiURL)
+      .delete<Subjects>(apiURL, this.globalService.httpOptions)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 }

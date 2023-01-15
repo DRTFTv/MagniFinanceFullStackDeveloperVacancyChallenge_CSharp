@@ -26,10 +26,12 @@ namespace Backend
 
             services.AddCors(options =>
             {
-                options.AddPolicy("EnableCORS", builder =>
-                {
-                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().Build();
-                });
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                   .AllowAnyMethod()
+                   .AllowAnyHeader()
+                   .SetIsOriginAllowed((host) => true)
+                   .AllowCredentials());
             });
 
             ///
@@ -50,7 +52,8 @@ namespace Backend
 
             app.UseRouting();
 
-            app.UseCors("EnableCORS");
+            app.UseCors("CorsPolicy");
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {

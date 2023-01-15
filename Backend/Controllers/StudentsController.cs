@@ -39,7 +39,7 @@ namespace Backend.Controllers
             return Ok(students);
         }
 
-        [HttpGet("GetById")]
+        [HttpGet("GetById/{Id}")]
         public IActionResult GetById([Required] int Id)
         {
             StudentsModel student = _repository.GetById(Id);
@@ -58,7 +58,7 @@ namespace Backend.Controllers
                 return Ok("Error when changing student registration!");
         }
 
-        [HttpDelete("DeleteById")]
+        [HttpDelete("DeleteById/{Id}")]
         public IActionResult DeleteById([Required] int Id)
         {
             bool res = _repository.DeleteById(Id);
@@ -88,7 +88,7 @@ namespace Backend.Controllers
             return Ok(studentEnrollments);
         }
 
-        [HttpGet("GetStudentEnrollmentByRegistrationNumber")]
+        [HttpGet("GetStudentEnrollmentByRegistrationNumber/{RegistrationNumber}")]
         public IActionResult GetStudentEnrollmentByRegistrationNumber([Required] int RegistrationNumber)
         {
             Students_SubjectsModel studentEnrollment = _repository.GetStudentEnrollmentByRegistrationNumber(RegistrationNumber);
@@ -96,7 +96,7 @@ namespace Backend.Controllers
             return Ok(studentEnrollment);
         }
 
-        [HttpGet("GetAllStudentEnrollmentsByStudentId")]
+        [HttpGet("GetAllStudentEnrollmentsByStudentId/{StudentId}")]
         public IActionResult GetAllStudentEnrollmentsByStudentId([Required] int StudentId)
         {
             IEnumerable<Students_SubjectsModel> studentEnrollments = _repository.GetAllStudentEnrollmentsByStudentId(StudentId);
@@ -116,7 +116,7 @@ namespace Backend.Controllers
                 return Ok("Error when changing student registration!");
         }
 
-        [HttpDelete("DeleteStudentEnrollmentByRegistrationNumber")]
+        [HttpDelete("DeleteStudentEnrollmentByRegistrationNumber/{RegistrationNumber}")]
         public IActionResult DeleteStudentEnrollmentByRegistrationNumber([Required] int RegistrationNumber)
         {
             bool res = _repository.DeleteStudentEnrollmentByRegistrationNumber(RegistrationNumber);
@@ -127,7 +127,7 @@ namespace Backend.Controllers
                 return Ok("Error deleting student registration!");
         }
 
-        [HttpDelete("DeleteStudentEnrollmentByStudentId")]
+        [HttpDelete("DeleteStudentEnrollmentByStudentId/{StudentId}")]
         public IActionResult DeleteStudentEnrollmentByStudentId([Required] int StudentId)
         {
             bool res = _repository.DeleteStudentEnrollmentByStudentId(StudentId);

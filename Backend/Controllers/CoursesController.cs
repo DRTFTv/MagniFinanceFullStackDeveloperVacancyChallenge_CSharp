@@ -35,7 +35,7 @@ namespace Backend.Controllers
             return Ok(courses);
         }
 
-        [HttpGet("GetById")]
+        [HttpGet("GetById/{Id}")]
         public IActionResult GetById([Required] int Id)
         {
             CoursesModel course = _repository.GetById(Id);
@@ -54,7 +54,7 @@ namespace Backend.Controllers
                 return Ok("Error when changing course registration!");
         }
 
-        [HttpDelete("DeleteById")]
+        [HttpDelete("DeleteById/{Id}")]
         public IActionResult DeleteById([Required] int Id)
         {
             bool res = _repository.DeleteById(Id);
