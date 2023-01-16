@@ -1,19 +1,18 @@
-import { StudentAdd, StudentUpdate } from './../../models/students';
-import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { TeachersService } from './../../controllers/teachers.service';
+import { TeacherAdd, Teachers, TeacherUpdate } from './../../models/teachers';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StudentsService } from 'src/app/controllers/students.service';
-import { Students } from 'src/app/models/students';
+import { formatDate } from '@angular/common';
 
 @Component({
-  selector: 'app-students',
-  templateUrl: './students.component.html',
-  styleUrls: ['./students.component.scss'],
+  selector: 'app-teachers',
+  templateUrl: './teachers.component.html',
+  styleUrls: ['./teachers.component.scss'],
 })
-export class StudentsComponent implements OnInit {
+export class TeachersComponent {
   formGroup!: FormGroup;
 
-  allStudents!: Students[];
+  allTeachers!: Teachers[];
   copyEdit: any;
   interval: any;
 
@@ -22,7 +21,7 @@ export class StudentsComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private studentsService: StudentsService
+    private teachersService: TeachersService
   ) {}
 
   ngOnInit() {
@@ -32,6 +31,7 @@ export class StudentsComponent implements OnInit {
         formatDate(new Date(), 'yyyy-MM-dd', 'en'),
         [Validators.required],
       ],
+      salary: ['', [Validators.required]],
     });
 
     this.getAll();
@@ -46,17 +46,18 @@ export class StudentsComponent implements OnInit {
     this.inEdit = false;
   }
 
-  switchEdit(Student: any) {
+  switchEdit(Teacher: any) {
     this.inCreation = false;
 
-    if (this.copyEdit == null && Student != null) {
+    if (this.copyEdit == null && Teacher != null) {
       this.formGroup.reset();
       this.inEdit = true;
-      this.copyEdit = Student;
+      this.copyEdit = Teacher;
       this.formGroup.controls['name'].setValue(this.copyEdit.name);
       this.formGroup.controls['birthDate'].setValue(
         formatDate(this.copyEdit.birthDate, 'yyyy-MM-dd', 'en')
       );
+      this.formGroup.controls['salary'].setValue(this.copyEdit.salary);
     } else {
       this.formGroup.reset();
       this.inEdit = false;
@@ -65,11 +66,12 @@ export class StudentsComponent implements OnInit {
   }
 
   add() {
-    this.studentsService
+    this.teachersService
       .add(
-        new StudentAdd(
+        new TeacherAdd(
           this.formGroup.controls['name'].value,
-          new Date(this.formGroup.controls['birthDate'].value)
+          new Date(this.formGroup.controls['birthDate'].value),
+          this.formGroup.controls['salary'].value
         )
       )
       .subscribe(() => {
@@ -79,18 +81,19 @@ export class StudentsComponent implements OnInit {
   }
 
   getAll() {
-    this.studentsService.getAll().subscribe((res) => {
-      this.allStudents = res;
+    this.teachersService.getAll().subscribe((res) => {
+      this.allTeachers = res;
     });
   }
 
   edit() {
-    this.studentsService
+    this.teachersService
       .updateById(
-        new StudentUpdate(
+        new TeacherUpdate(
           this.copyEdit.id,
           this.formGroup.controls['name'].value,
-          new Date(this.formGroup.controls['birthDate'].value)
+          new Date(this.formGroup.controls['birthDate'].value),
+          this.formGroup.controls['salary'].value
         )
       )
       .subscribe(() => {
@@ -100,7 +103,7 @@ export class StudentsComponent implements OnInit {
   }
 
   delete(Id: number) {
-    this.studentsService.deleteById(Id).subscribe(() => {
+    this.teachersService.deleteById(Id).subscribe(() => {
       this.getAll();
     });
   }

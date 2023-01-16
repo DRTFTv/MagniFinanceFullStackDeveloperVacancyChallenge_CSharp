@@ -15,11 +15,11 @@ import { GlobalService } from './global.service';
 export class StudentsService {
   constructor(private http: HttpClient, private globalService: GlobalService) {}
 
-  add(Students: StudentAdd): Observable<StudentAdd> {
+  add(Student: StudentAdd): Observable<StudentAdd> {
     const apiURL = `${this.globalService.URL}/Students/Add`;
 
     return this.http
-      .post<StudentAdd>(apiURL, Students)
+      .post<StudentAdd>(apiURL, Student)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 

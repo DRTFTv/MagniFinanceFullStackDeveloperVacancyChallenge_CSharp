@@ -1,0 +1,205 @@
+<div class="loadingPage" *ngIf="false">
+  <div class="loadingPage-loader"></div>
+</div>
+<div class="page" *ngIf="true">
+  <h1 class="page-title">{{ "ROUTES.TEACHERS" | translate }}</h1>
+
+  <div class="content">
+    <div class="tableContainer">
+      <h2 class="tableContainer-title">
+        {{ "TABLES.TITLES.LIST_OF_STUDENTS" | translate }}
+        <button
+          (click)="switchCreation()"
+          class="tableContainer-table-addButton"
+          *ngIf="allTeachers.length != 0"
+        >
+          <div
+            class="tableContainer-table-addButton-text"
+            *ngIf="!inCreation; else elseBlock"
+          >
+            {{ "TABLES.BUTTONS.ADD" | translate }}
+          </div>
+          <ng-template #elseBlock>{{
+            "TABLES.BUTTONS.CANCEL" | translate
+          }}</ng-template>
+        </button>
+      </h2>
+
+      <button
+        (click)="switchCreation()"
+        class="tableContainer-addButton"
+        *ngIf="allTeachers.length == 0"
+      >
+        {{ "TABLES.BUTTONS.ALERT_ADD" | translate }}
+      </button>
+      <form [formGroup]="formGroup">
+        <table
+          class="tableContainer-table"
+          *ngIf="allTeachers.length != 0 || inCreation"
+        >
+          <tr>
+            <th class="tableContainer-table-th">Id</th>
+            <th class="tableContainer-table-th">
+              {{ "TABLES.COLUMN_NAMES.NAME" | translate }}
+            </th>
+            <th class="tableContainer-table-th tableContainer-table-td-actions">
+              {{ "TABLES.COLUMN_NAMES.BIRTHDATE" | translate }}
+            </th>
+            <th class="tableContainer-table-th tableContainer-table-td-actions">
+              {{ "TABLES.COLUMN_NAMES.SALARY" | translate }}
+            </th>
+            <th class="tableContainer-table-th tableContainer-table-td-actions">
+              {{ "TABLES.COLUMN_NAMES.ACTIONS" | translate }}
+            </th>
+          </tr>
+
+          <tr *ngIf="inCreation">
+            <td class="tableContainer-table-td">+</td>
+            <td class="tableContainer-table-td">
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                [ngStyle]="{
+                  borderBottom:
+                    formGroup.get('nome')?.touched ||
+                    formGroup.get('name')?.errors
+                      ? '0.15rem red solid'
+                      : 'none'
+                }"
+              />
+            </td>
+            <td class="tableContainer-table-td">
+              <input
+                id="birthDate"
+                type="date"
+                formControlName="birthDate"
+                [ngStyle]="{
+                  borderBottom: formGroup.get('birthDate')?.errors
+                    ? '0.15rem red solid'
+                    : 'none'
+                }"
+              />
+            </td>
+            <td class="tableContainer-table-td">
+              <input
+                class="input-label"
+                id="salary"
+                type="number"
+                formControlName="salary"
+                [ngStyle]="{
+                  borderBottom:
+                    formGroup.get('salary')?.touched ||
+                    formGroup.get('salary')?.errors
+                      ? '0.15rem red solid'
+                      : 'none'
+                }"
+              />
+            </td>
+            <td class="tableContainer-table-td">
+              <button
+                type="submit"
+                (click)="add()"
+                [disabled]="!formGroup.valid"
+                class="tableContainer-table-confirmButton"
+              >
+                {{ "TABLES.BUTTONS.CONFIRM" | translate }}
+              </button>
+            </td>
+          </tr>
+
+          <tr *ngFor="let teacher of allTeachers">
+            <ng-container
+              *ngIf="copyEdit == null || teacher.id != copyEdit.id || !inEdit"
+            >
+              <td class="tableContainer-table-td">
+                {{ teacher.id }}
+              </td>
+              <td class="tableContainer-table-td">{{ teacher.name }}</td>
+              <td class="tableContainer-table-td">
+                {{ teacher.birthDate | date }}
+              </td>
+              <td class="tableContainer-table-td">
+                {{ teacher.salary }}
+              </td>
+              <td class="tableContainer-table-td">
+                <button
+                  (click)="switchEdit(teacher)"
+                  class="tableContainer-table-editButton"
+                >
+                  {{ "TABLES.BUTTONS.EDIT" | translate }}
+                </button>
+                <button
+                  (click)="delete(teacher.id)"
+                  class="tableContainer-table-deleteButton"
+                >
+                  {{ "TABLES.BUTTONS.DELETE" | translate }}
+                </button>
+              </td>
+            </ng-container>
+
+            <ng-container
+              *ngIf="copyEdit != null && teacher.id == copyEdit.id && inEdit"
+            >
+              <td class="tableContainer-table-td">{{ teacher.id }}</td>
+              <td class="tableContainer-table-td">
+                <input
+                  id="name"
+                  type="text"
+                  formControlName="name"
+                  [ngStyle]="{
+                    borderBottom:
+                      formGroup.get('nome')?.touched ||
+                      formGroup.get('name')?.errors
+                        ? '0.15rem red solid'
+                        : 'none'
+                  }"
+                />
+              </td>
+              <td class="tableContainer-table-td">
+                <input
+                  [value]=""
+                  id="birthDate"
+                  type="date"
+                  formControlName="birthDate"
+                  [ngStyle]="{
+                    borderBottom: formGroup.get('birthDate')?.errors
+                      ? '0.15rem red solid'
+                      : 'none'
+                  }"
+                />
+              </td>
+              <td class="tableContainer-table-td">
+                <input
+                  id="salary"
+                  type="number"
+                  formControlName="salary"
+                  [ngStyle]="{
+                    borderBottom:
+                      formGroup.get('salary')?.touched ||
+                      formGroup.get('salary')?.errors
+                        ? '0.15rem red solid'
+                        : 'none'
+                  }"
+                />
+              </td>
+              <td class="tableContainer-table-td">
+                <button
+                  (click)="edit()"
+                  class="tableContainer-table-editButton"
+                >
+                  {{ "TABLES.BUTTONS.EDIT" | translate }}</button
+                ><button
+                  (click)="switchEdit(teacher.id)"
+                  class="tableContainer-table-deleteButton"
+                >
+                  {{ "TABLES.BUTTONS.CANCEL" | translate }}
+                </button>
+              </td>
+            </ng-container>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
