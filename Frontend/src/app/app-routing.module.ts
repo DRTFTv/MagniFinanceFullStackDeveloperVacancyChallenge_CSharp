@@ -1,3 +1,4 @@
+import { CoursesComponent } from './pages/courses/courses.component';
 import { TeachersComponent } from './pages/teachers/teachers.component';
 import { StudentsComponent } from './pages/students/students.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -9,6 +10,7 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent, title: 'Home' },
   { path: 'students', component: StudentsComponent, title: 'Students' },
   { path: 'teachers', component: TeachersComponent, title: 'Teachers' },
+  { path: 'courses', component: CoursesComponent, title: 'Courses' },
   { path: '**', redirectTo: '' },
 ];
 

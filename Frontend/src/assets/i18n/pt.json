@@ -20,7 +20,8 @@
     "TITLES": {
       "LIST_OF_COURSES": "Lista de cursos",
       "LIST_OF_SUBJECTS": "Lista de disciplinas",
-      "LIST_OF_STUDENTS": "Lista de estudantes"
+      "LIST_OF_STUDENTS": "Lista de estudantes",
+      "LIST_OF_TEACHERS": "Lista de professores"
     },
     "BUTTONS": {
       "ALERT_ADD": "Lista vazia! Clique aqui para adicionar registros.",

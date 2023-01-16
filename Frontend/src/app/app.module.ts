@@ -12,13 +12,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { StudentsComponent } from './pages/students/students.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TeachersComponent } from './pages/teachers/teachers.component';
+import { CoursesComponent } from './pages/courses/courses.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, StudentsComponent, TeachersComponent],
+  declarations: [AppComponent, HomeComponent, StudentsComponent, TeachersComponent, CoursesComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

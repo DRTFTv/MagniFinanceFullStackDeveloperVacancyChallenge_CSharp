@@ -1,5 +1,10 @@
 import { GlobalService } from './global.service';
-import { Courses, CoursesHome } from './../models/courses';
+import {
+  Courses,
+  CoursesHome,
+  CourseAdd,
+  CourseUpdate,
+} from './../models/courses';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, retry, catchError } from 'rxjs';
@@ -10,11 +15,11 @@ import { Observable, retry, catchError } from 'rxjs';
 export class CoursesService {
   constructor(private http: HttpClient, private globalService: GlobalService) {}
 
-  add(Courses: Courses): Observable<Courses> {
+  add(Course: CourseAdd): Observable<CourseAdd> {
     const apiURL = `${this.globalService.URL}/Courses/Add`;
 
     return this.http
-      .post<Courses>(apiURL, Courses)
+      .post<CourseAdd>(apiURL, Course)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 
@@ -42,11 +47,11 @@ export class CoursesService {
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 
-  updateById(Courses: Courses): Observable<Courses> {
+  updateById(Course: CourseUpdate): Observable<CourseUpdate> {
     const apiURL = `${this.globalService.URL}/Courses/UpdateById`;
 
     return this.http
-      .put<Courses>(apiURL, Courses, this.globalService.httpOptions)
+      .put<CourseUpdate>(apiURL, Course, this.globalService.httpOptions)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 

@@ -20,7 +20,8 @@
     "TITLES": {
       "LIST_OF_COURSES": "List of courses",
       "LIST_OF_SUBJECTS": "List of subjects",
-      "LIST_OF_STUDENTS": "List of students"
+      "LIST_OF_STUDENTS": "List of students",
+      "LIST_OF_TEACHERS": "List of teachers"
     },
     "BUTTONS": {
       "ALERT_ADD": "Empty list! Click here to add records.",
