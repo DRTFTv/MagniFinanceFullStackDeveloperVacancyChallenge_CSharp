@@ -19,14 +19,14 @@ namespace Backend.Controllers
         }
 
         [HttpPost("Add")]
-        public IActionResult Add([FromForm] TeacherAddView Teacher)
+        public IActionResult Add([FromBody] TeacherAddView Teacher)
         {
             bool res = _repository.Add(Teacher);
 
             if (res)
-                return Ok("Successfully registered teacher!");
+                return Ok(new ResponseModel() { Message = "Successfully registered teacher!" });
             else
-                return Ok("Error registering teacher!");
+                return Ok(new ResponseModel() { Message = "Error registering teacher!" });
         }
 
         [HttpGet("GetAll")]
@@ -46,14 +46,14 @@ namespace Backend.Controllers
         }
 
         [HttpPut("UpdateById")]
-        public IActionResult UpdateById([FromForm] TeacherUpdateByIdView Teacher)
+        public IActionResult UpdateById([FromBody] TeacherUpdateByIdView Teacher)
         {
             bool res = _repository.UpdateById(Teacher);
 
             if (res)
-                return Ok("Teacher registration changed successfully!");
+                return Ok(new ResponseModel() { Message = "Teacher registration changed successfully!" });
             else
-                return Ok("Error when changing teacher registration!");
+                return Ok(new ResponseModel() { Message = "Error when changing teacher registration!" });
         }
 
         [HttpDelete("DeleteById/{Id}")]
@@ -62,9 +62,9 @@ namespace Backend.Controllers
             bool res = _repository.DeleteById(Id);
 
             if (res)
-                return Ok("Teacher registration successfully deleted!");
+                return Ok(new ResponseModel() { Message = "Teacher registration successfully deleted!" });
             else
-                return Ok("Error deleting teacher record!");
+                return Ok(new ResponseModel() { Message = "Error deleting teacher record!" });
         }
     }
 }

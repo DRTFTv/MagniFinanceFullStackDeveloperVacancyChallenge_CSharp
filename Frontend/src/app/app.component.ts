@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  currentRoute: string | undefined;
+  currentRoute!: string;
 
   languageList = [
     { code: 'pt', name: 'PT', icon: '1f1f5-1f1f9' },

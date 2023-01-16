@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   allCourses!: CoursesHome[];
   allSubjects!: SubjectsHome[];
   allStudents!: StudentsHome[];
+  interval: any;
 
   constructor(
     private coursesService: CoursesService,
@@ -23,10 +24,13 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getALL();
+    this.getAll();
+    this.interval = setInterval(() => {
+      this.getAll();
+    }, 60000);
   }
 
-  getALL() {
+  getAll() {
     this.coursesService.homeGetAll().subscribe((res) => {
       this.allCourses = res;
     });
@@ -34,7 +38,6 @@ export class HomeComponent implements OnInit {
       this.allSubjects = res;
     });
     this.studentsService.homeGetAll().subscribe((res) => {
-      console.warn(res);
       this.allStudents = res;
     });
   }

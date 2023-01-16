@@ -23,7 +23,12 @@
       "LIST_OF_STUDENTS": "List of students"
     },
     "BUTTONS": {
-      "ALERT_ADD": "Empty list! Click here to add records."
+      "ALERT_ADD": "Empty list! Click here to add records.",
+      "ADD": "Add",
+      "EDIT": "Edit",
+      "DELETE": "Delete",
+      "CANCEL": "Cancel",
+      "CONFIRM": "Confirm"
     },
     "COLUMN_NAMES": {
       "NAME": "Name",
@@ -33,7 +38,9 @@
       "TEACHER_INFORMATION": "Teacher information",
       "GRADE_TABLE": "Grades",
       "SUBJECTS": "Subject",
-      "GRADE": "Grade"
+      "GRADE": "Grade",
+      "BIRTHDATE": "Birth date",
+      "ACTIONS": "Actions"
     },
     "VALUE_FORMATS": {
       "NAME": "Name:",

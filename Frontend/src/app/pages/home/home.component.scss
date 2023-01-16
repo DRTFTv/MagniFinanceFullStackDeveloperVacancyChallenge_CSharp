@@ -13,35 +13,3 @@
   align-items: flex-start;
   gap: 1rem;
 }
-
-.statisticsGroup {
-  /*size - position*/
-  height: 100%;
-  /*style*/
-
-  /*grid*/
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-
-  .statisticsGroup-item {
-    /*size - position*/
-    width: 5rem;
-    height: 5rem;
-
-    /*style*/
-    background-color: var(--2-color);
-    border-radius: 0.5rem;
-    box-shadow: 0 0 0.25rem var(--2-color);
-    color: var(--1-color);
-
-    /*grid*/
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-}

@@ -237,9 +237,49 @@
   width: 100%;
 }
 
-.page {
+.loadingPage {
   /*size - position*/
   min-width: 100%;
+  height: 100%;
+
+  /*style*/
+
+  /*grid*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.loadingPage-loader {
+  /*size - position*/
+  width: 5rem;
+  height: 5rem;
+
+  /*style*/
+  border: 16px solid var(--1-color);
+  border-top: 16px solid var(--3-color);
+  border-radius: 50%;
+
+  /*grid*/
+
+  /*animation*/
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.page {
+  /*size - position*/
+  width: 100%;
   height: 100%;
   padding: 1rem;
 
@@ -265,7 +305,7 @@
 
 .tableContainer {
   /*size - position*/
-  width: 100%;
+  min-width: 100%;
   height: 100%;
   padding: 0.5rem;
 
@@ -336,6 +376,134 @@
 
   /*style*/
   border: 0.15rem var(--3-color) solid;
+
+  /*grid*/
+}
+
+.tableContainer-table-td-actions {
+  /*size - position*/
+  width: 15rem;
+
+  /*style*/
+
+  /*grid*/
+}
+
+.tableContainer-table-addButton,
+.tableContainer-table-confirmButton {
+  /*size - position*/
+  padding: 0.5rem;
+
+  /*style*/
+  border: none;
+  background-color: green;
+  border-radius: 0.5rem;
+
+  /*grid*/
+}
+
+.tableContainer-table-editButton,
+.tableContainer-table-deleteButton {
+  /*size - position*/
+  width: 50%;
+  padding: 0.5rem;
+
+  /*style*/
+  border: none;
+
+  /*grid*/
+}
+
+.tableContainer-table-confirmButton {
+  /*size - position*/
+  width: 100%;
+
+  /*style*/
+  border: none;
+
+  /*grid*/
+}
+
+.tableContainer-table-addButton:hover,
+.tableContainer-table-editButton:hover,
+.tableContainer-table-deleteButton:hover,
+.tableContainer-table-confirmButton:hover {
+  /*size - position*/
+
+  /*style*/
+  background-color: var(--1-color);
+  color: var(--2-color);
+
+  /*grid*/
+}
+
+.tableContainer-table-editButton {
+  /*size - position*/
+
+  /*style*/
+  background-color: orange;
+  border-radius: 0.5rem 0 0 0.5rem;
+
+  /*grid*/
+}
+
+.tableContainer-table-editButton-text {
+  /*size - position*/
+
+  /*style*/
+  color: var(--1-color);
+
+  /*grid*/
+}
+
+.tableContainer-table-editButton-text:hover {
+  /*size - position*/
+
+  /*style*/
+  color: var(--2-color);
+
+  /*grid*/
+}
+
+.tableContainer-table-deleteButton {
+  /*size - position*/
+
+  /*style*/
+  background-color: red;
+  border-radius: 0 0.5rem 0.5rem 0;
+
+  /*grid*/
+}
+
+.tableContainer-table-addButton-text {
+  /*size - position*/
+
+  /*style*/
+  color: var(--1-color);
+
+  /*grid*/
+}
+
+.tableContainer-table-addButton-text:hover {
+  /*size - position*/
+
+  /*style*/
+  color: var(--2-color);
+
+  /*grid*/
+}
+
+input {
+  /*size - position*/
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+
+  /*style*/
+  background-color: var(--1-color);
+  color: var(--2-color);
+  border: none;
+  border-radius: 0.5rem;
 
   /*grid*/
 }

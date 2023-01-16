@@ -81,7 +81,7 @@ namespace Backend.Models.Subjects
                     TeacherBirthDate = teacher.BirthDate,
                     TeacherSalary = teacher.Salary,
                     NumberOfStudents = numberOfStudents.Count(),
-                    GradeAvarege = dividend / grades.Count(),
+                    GradeAvarege = grades.Count() != 0 ? dividend / grades.Count() : 0,
                 });
             });
 

@@ -18,3 +18,25 @@ export interface gradeForDiscipline {
   gradeFour: number;
   gradeAvarege: number;
 }
+
+export class StudentAdd {
+  name: string;
+  birthDate: Date;
+
+  constructor(name: string, birthDate: Date) {
+    this.name = name;
+    this.birthDate = birthDate;
+  }
+}
+
+export class StudentUpdate {
+  id: number;
+  name: string;
+  birthDate: Date;
+
+  constructor(id: number, name: string, birthDate: Date) {
+    this.id = id;
+    this.name = name;
+    this.birthDate = birthDate;
+  }
+}

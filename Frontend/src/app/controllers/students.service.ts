@@ -1,4 +1,9 @@
-import { Students, StudentsHome } from './../models/students';
+import {
+  Students,
+  StudentsHome,
+  StudentAdd,
+  StudentUpdate,
+} from './../models/students';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, retry } from 'rxjs';
@@ -10,11 +15,11 @@ import { GlobalService } from './global.service';
 export class StudentsService {
   constructor(private http: HttpClient, private globalService: GlobalService) {}
 
-  add(Students: Students): Observable<Students> {
+  add(Students: StudentAdd): Observable<StudentAdd> {
     const apiURL = `${this.globalService.URL}/Students/Add`;
 
     return this.http
-      .post<Students>(apiURL, Students)
+      .post<StudentAdd>(apiURL, Students)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 
@@ -42,11 +47,11 @@ export class StudentsService {
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 
-  updateById(Students: Students): Observable<Students> {
+  updateById(Student: StudentUpdate): Observable<StudentUpdate> {
     const apiURL = `${this.globalService.URL}/Students/UpdateById`;
 
     return this.http
-      .put<Students>(apiURL, Students)
+      .put<StudentUpdate>(apiURL, Student)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 

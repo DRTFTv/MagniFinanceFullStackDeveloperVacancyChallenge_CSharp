@@ -18,14 +18,14 @@ namespace Backend.Controllers
         }
 
         [HttpPost("Add")]
-        public IActionResult Add([FromForm] SubjectAddView Subject)
+        public IActionResult Add([FromBody] SubjectAddView Subject)
         {
             bool res = _repository.Add(Subject);
 
             if (res)
-                return Ok("Successfully registered subject!");
+                return Ok(new ResponseModel() { Message = "Successfully registered subject!" });
             else
-                return Ok("Error registering subject!");
+                return Ok(new ResponseModel() { Message = "Error registering subject!" });
         }
 
         [HttpGet("GetAll")]
@@ -53,14 +53,14 @@ namespace Backend.Controllers
         }
 
         [HttpPut("UpdateById")]
-        public IActionResult UpdateById([FromForm] SubjectUpdateByIdView Subject)
+        public IActionResult UpdateById([FromBody] SubjectUpdateByIdView Subject)
         {
             bool res = _repository.UpdateById(Subject);
 
             if (res)
-                return Ok("Subject registration changed successfully!");
+                return Ok(new ResponseModel() { Message = "Subject registration changed successfully!" });
             else
-                return Ok("Error when changing subject registration!");
+                return Ok(new ResponseModel() { Message = "Error when changing subject registration!" });
         }
 
         [HttpDelete("DeleteById/{Id}")]
@@ -69,9 +69,9 @@ namespace Backend.Controllers
             bool res = _repository.DeleteById(Id);
 
             if (res)
-                return Ok("Subject registration successfully deleted!");
+                return Ok(new ResponseModel() { Message = "Subject registration successfully deleted!" });
             else
-                return Ok("Error deleting subject record!");
+                return Ok(new ResponseModel() { Message = "Error deleting subject record!" });
         }
     }
 }

@@ -1,4 +1,8 @@
-<div class="page">
+<div class="loadingPage" *ngIf="!allCourses && !allSubjects && !allStudents">
+  <div class="loadingPage-loader"></div>
+</div>
+
+<div class="page" *ngIf="allCourses && allSubjects && allStudents">
   <h1 class="page-title">{{ "ROUTES.HOME" | translate }}</h1>
 
   <div class="content">
@@ -6,10 +10,10 @@
       <h2 class="tableContainer-title">
         {{ "TABLES.TITLES.LIST_OF_COURSES" | translate }}
       </h2>
-      <button class="tableContainer-addButton" *ngIf="!allCourses">
+      <button class="tableContainer-addButton" *ngIf="allCourses.length == 0">
         {{ "TABLES.BUTTONS.ALERT_ADD" | translate }}
       </button>
-      <table class="tableContainer-table" *ngIf="allCourses">
+      <table class="tableContainer-table" *ngIf="allCourses.length != 0">
         <tr>
           <th class="tableContainer-table-th">Id</th>
           <th class="tableContainer-table-th">
@@ -39,10 +43,10 @@
       <h2 class="tableContainer-title">
         {{ "TABLES.TITLES.LIST_OF_SUBJECTS" | translate }}
       </h2>
-      <button class="tableContainer-addButton" *ngIf="!allSubjects">
+      <button class="tableContainer-addButton" *ngIf="allSubjects.length == 0">
         {{ "TABLES.BUTTONS.ALERT_ADD" | translate }}
       </button>
-      <table class="tableContainer-table" *ngIf="allSubjects">
+      <table class="tableContainer-table" *ngIf="allSubjects.length != 0">
         <tr>
           <th class="tableContainer-table-th">Id</th>
           <th class="tableContainer-table-th">
@@ -84,10 +88,14 @@
       <h2 class="tableContainer-title">
         {{ "TABLES.TITLES.LIST_OF_STUDENTS" | translate }}
       </h2>
-      <button class="tableContainer-addButton" *ngIf="!allStudents">
+      <button
+        [routerLink]="['/students']"
+        class="tableContainer-addButton"
+        *ngIf="allStudents.length == 0"
+      >
         {{ "TABLES.BUTTONS.ALERT_ADD" | translate }}
       </button>
-      <table class="tableContainer-table" *ngIf="allStudents">
+      <table class="tableContainer-table" *ngIf="allStudents.length != 0">
         <tr>
           <th class="tableContainer-table-th">Id</th>
           <th class="tableContainer-table-th">

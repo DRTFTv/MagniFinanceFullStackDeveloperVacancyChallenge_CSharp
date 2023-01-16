@@ -23,7 +23,12 @@
       "LIST_OF_STUDENTS": "Lista de estudantes"
     },
     "BUTTONS": {
-      "ALERT_ADD": "Lista vazia! Clique aqui para adicionar registros."
+      "ALERT_ADD": "Lista vazia! Clique aqui para adicionar registros.",
+      "ADD": "Adicionar",
+      "EDIT": "Editar",
+      "DELETE": "Excluir",
+      "CANCEL": "Cancelar",
+      "CONFIRM": "Confirmar"
     },
     "COLUMN_NAMES": {
       "NAME": "Nome",
@@ -33,7 +38,9 @@
       "TEACHER_INFORMATION": "Informações do professor",
       "GRADE_TABLE": "Notas",
       "SUBJECTS": "Disciplina",
-      "GRADE": "Nota"
+      "GRADE": "Nota",
+      "ACTIONS": "Ações",
+      "BIRTHDATE": "Data de nascimento"
     },
     "VALUE_FORMATS": {
       "NAME": "Nome:",

@@ -21,14 +21,16 @@ namespace Backend.Controllers
         }
 
         [HttpPost("Add")]
-        public IActionResult Add([FromForm] StudentAddView Student)
+        public IActionResult Add([FromBody] StudentAddView Student)
         {
             bool res = _repository.Add(Student);
 
+
             if (res)
-                return Ok("Successfully registered student!");
+                return Ok(new ResponseModel() { Message = "Successfully registered student!" });
             else
-                return Ok("Error registering student!");
+                return Ok(new ResponseModel() { Message = "Error registering student!" });
+
         }
 
         [HttpGet("GetAll")]
@@ -56,14 +58,14 @@ namespace Backend.Controllers
         }
 
         [HttpPut("UpdateById")]
-        public IActionResult UpdateById([FromForm] StudentUpdateByIdView Student)
+        public IActionResult UpdateById([FromBody] StudentUpdateByIdView Student)
         {
             bool res = _repository.UpdateById(Student);
 
             if (res)
-                return Ok("Student registration changed successfully!");
+                return Ok(new ResponseModel() { Message = "Student registration changed successfully!" });
             else
-                return Ok("Error when changing student registration!");
+                return Ok(new ResponseModel() { Message = "Error when changing student registration!" });
         }
 
         [HttpDelete("DeleteById/{Id}")]
@@ -72,21 +74,21 @@ namespace Backend.Controllers
             bool res = _repository.DeleteById(Id);
 
             if (res)
-                return Ok("Student registration successfully deleted!");
+                return Ok(new ResponseModel() { Message = "Student registration successfully deleted!" });
             else
-                return Ok("Error deleting student record!");
+                return Ok(new ResponseModel() { Message = "Error deleting student record!" });
         }
 
         ///
         [HttpPost("AddEnrollStudent")]
-        public IActionResult AddEnrollStudent([FromForm] EnrollStudentView EnrollStudent)
+        public IActionResult AddEnrollStudent([FromBody] EnrollStudentView EnrollStudent)
         {
             bool res = _repository.AddEnrollStudent(EnrollStudent);
 
             if (res)
-                return Ok("Student enrolled successfully!");
+                return Ok(new ResponseModel() { Message = "Student enrolled successfully!" });
             else
-                return Ok("Error enrolling student!");
+                return Ok(new ResponseModel() { Message = "Error enrolling student!" });
         }
 
         [HttpGet("GetAllStudentEnrollments")]
@@ -115,14 +117,14 @@ namespace Backend.Controllers
 
 
         [HttpPut("UpdateStudentEnrollmentByRegistrationNumber")]
-        public IActionResult UpdateStudentEnrollmentByRegistrationNumber([FromForm] UpdateStudentEnrollmentByIdModel EnrollStudent)
+        public IActionResult UpdateStudentEnrollmentByRegistrationNumber([FromBody] UpdateStudentEnrollmentByIdModel EnrollStudent)
         {
             bool res = _repository.UpdateStudentEnrollmentByRegistrationNumber(EnrollStudent);
 
             if (res)
-                return Ok("Student enrollment changed successfully!");
+                return Ok(new ResponseModel() { Message = "Student enrollment changed successfully!" });
             else
-                return Ok("Error when changing student registration!");
+                return Ok(new ResponseModel() { Message = "Error when changing student registration!" });
         }
 
         [HttpDelete("DeleteStudentEnrollmentByRegistrationNumber/{RegistrationNumber}")]
@@ -131,9 +133,9 @@ namespace Backend.Controllers
             bool res = _repository.DeleteStudentEnrollmentByRegistrationNumber(RegistrationNumber);
 
             if (res)
-                return Ok("Enrollment of deleted student successfully!");
+                return Ok(new ResponseModel() { Message = "Enrollment of deleted student successfully!" });
             else
-                return Ok("Error deleting student registration!");
+                return Ok(new ResponseModel() { Message = "Error deleting student registration!" });
         }
 
         [HttpDelete("DeleteStudentEnrollmentByStudentId/{StudentId}")]
@@ -142,9 +144,9 @@ namespace Backend.Controllers
             bool res = _repository.DeleteStudentEnrollmentByStudentId(StudentId);
 
             if (res)
-                return Ok("Enrollment of deleted student successfully!");
+                return Ok(new ResponseModel() { Message = "Enrollment of deleted student successfully!" });
             else
-                return Ok("Error deleting student registration!");
+                return Ok(new ResponseModel() { Message = "Error deleting student registration!" });
         }
     }
 }

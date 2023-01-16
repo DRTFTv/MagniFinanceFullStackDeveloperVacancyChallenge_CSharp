@@ -47,7 +47,6 @@ namespace Backend.Models.Courses
                 List<GradesModel> grades = new List<GradesModel>();
                 double dividend = 0;
 
-
                 _universityDbContext.Subjects.ToList().ForEach(s =>
                 {
                     if (numberOfTeachers.Where(not => not.Id == s.TeacherId).FirstOrDefault() == null)
@@ -61,6 +60,7 @@ namespace Backend.Models.Courses
                         if (numberOfStudents.Where(nos => nos.Id == ss.StudentId).FirstOrDefault() == null)
                             numberOfStudents.Add(_universityDbContext.Students.Where(s => s.Id == ss.StudentId).FirstOrDefault());
                         grades.Add(_universityDbContext.Grades.Where(g => g.Id == ss.GradeId).FirstOrDefault());
+                        
                     });
                 });
 
@@ -76,7 +76,7 @@ namespace Backend.Models.Courses
                     Name = c.Name,
                     NumberOfTeachers = numberOfTeachers.Count(),
                     NumberOfStudents = numberOfStudents.Count(),
-                    GradeAvarege = dividend / grades.Count(),
+                    GradeAvarege = grades.Count() != 0 ? dividend / grades.Count() : 0,
                 });
             });
 
