@@ -1,3 +1,4 @@
+import { GradeByIdComponent } from './pages/grades/grade-by-id/grade-by-id.component';
 import { EnrollmentsComponent } from './pages/enrollments/enrollments.component';
 import { GradesComponent } from './pages/grades/grades.component';
 import { Grades } from './models/grades';
@@ -21,7 +22,13 @@ const appRoutes: Routes = [
   { path: 'teachers', component: TeachersComponent, title: 'Teachers' },
   { path: 'courses', component: CoursesComponent, title: 'Courses' },
   { path: 'subjects', component: SubjectsComponent, title: 'Subjects' },
-  { path: 'grades', component: GradesComponent, title: 'Grades' },
+  {
+    path: 'grades',
+    component: GradesComponent,
+    title: 'Grades',
+  },
+
+  { path: 'grades/byid/:id', component: GradeByIdComponent, title: 'Grade' },
   { path: '**', redirectTo: '' },
 ];
 

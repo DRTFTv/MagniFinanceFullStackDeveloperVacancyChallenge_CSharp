@@ -1,6 +1,6 @@
 import { StudentAdd, StudentUpdate } from './../../models/students';
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentsService } from 'src/app/controllers/students.service';
 import { Students } from 'src/app/models/students';
@@ -10,7 +10,7 @@ import { Students } from 'src/app/models/students';
   templateUrl: './students.component.html',
   styleUrls: ['./students.component.scss'],
 })
-export class StudentsComponent implements OnInit {
+export class StudentsComponent {
   formGroup!: FormGroup;
 
   allStudents!: Students[];

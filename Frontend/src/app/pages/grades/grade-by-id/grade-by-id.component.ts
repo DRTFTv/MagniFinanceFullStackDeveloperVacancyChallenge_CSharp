@@ -1,28 +1,28 @@
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { GradeUpdate } from './../../models/grades';
-import { GradesService } from './../../controllers/grades.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { GradeAdd, Grades } from 'src/app/models/grades';
+import { ActivatedRoute, Router } from '@angular/router';
+import { GradesService } from 'src/app/controllers/grades.service';
+import { Grades, GradeUpdate } from 'src/app/models/grades';
 
 @Component({
-  selector: 'app-grades',
-  templateUrl: './grades.component.html',
-  styleUrls: ['./grades.component.scss'],
+  selector: 'app-grade-by-id',
+  templateUrl: './grade-by-id.component.html',
+  styleUrls: ['./grade-by-id.component.scss'],
 })
-export class GradesComponent {
+export class GradeByIdComponent {
   formGroup!: FormGroup;
 
-  allGrades!: Grades[];
+  grade!: Grades;
   copyEdit: any;
   interval: any;
 
-  inCreation = false;
   inEdit = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    private gradesService: GradesService
+    private gradesService: GradesService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -33,25 +33,17 @@ export class GradesComponent {
       gradeFour: ['', [Validators.required]],
     });
 
-    this.getAll();
+    this.get();
     this.interval = setInterval(() => {
-      this.getAll();
+      this.get();
     }, 60000);
   }
 
-  switchCreation() {
-    this.formGroup.reset();
-    this.inCreation = !this.inCreation;
-    this.inEdit = false;
-  }
-
-  switchEdit(Grade: any) {
-    this.inCreation = false;
-
-    if (this.copyEdit == null && Grade != null) {
+  switchEdit(Course: any) {
+    if (this.copyEdit == null && Course != null) {
       this.formGroup.reset();
       this.inEdit = true;
-      this.copyEdit = Grade;
+      this.copyEdit = Course;
       this.formGroup.controls['gradeOne'].setValue(this.copyEdit.gradeOne);
       this.formGroup.controls['gradeTwo'].setValue(this.copyEdit.gradeTwo);
       this.formGroup.controls['gradeThree'].setValue(this.copyEdit.gradeThree);
@@ -63,26 +55,12 @@ export class GradesComponent {
     }
   }
 
-  add() {
+  get() {
     this.gradesService
-      .add(
-        new GradeAdd(
-          this.formGroup.controls['gradeOne'].value,
-          this.formGroup.controls['gradeTwo'].value,
-          this.formGroup.controls['gradeThree'].value,
-          this.formGroup.controls['gradeFour'].value
-        )
-      )
-      .subscribe(() => {
-        this.getAll();
-        this.switchCreation();
+      .getById(this.route.snapshot.params['id'])
+      .subscribe((res) => {
+        this.grade = res;
       });
-  }
-
-  getAll() {
-    this.gradesService.getAll().subscribe((res) => {
-      this.allGrades = res;
-    });
   }
 
   edit() {
@@ -97,14 +75,12 @@ export class GradesComponent {
         )
       )
       .subscribe(() => {
-        this.getAll();
+        this.get();
         this.switchEdit(null);
       });
   }
 
-  delete(Id: number) {
-    this.gradesService.deleteById(Id).subscribe(() => {
-      this.getAll();
-    });
+  returnEnrollment() {
+    this.router.navigate(['/enrollments']);
   }
 }

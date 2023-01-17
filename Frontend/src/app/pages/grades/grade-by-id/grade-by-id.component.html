@@ -1,45 +1,28 @@
-<div class="loadingPage" *ngIf="!allGrades">
+<div class="loadingPage" *ngIf="!grade">
   <div class="loadingPage-loader"></div>
 </div>
 
-<div class="page" *ngIf="allGrades">
-  <router-outlet></router-outlet>
-
+<div class="page" *ngIf="grade">
   <h1 class="page-title">{{ "ROUTES.GRADES" | translate }}</h1>
+
+  <button
+    (click)="returnEnrollment()"
+    class="tableContainer-table-returnButton"
+  >
+    <i
+      class="bi bi-arrow-return-left tableContainer-table-returnButton-icon"
+    ></i>
+    {{ "ROUTES.BUTTONS.RETURN" | translate }}
+  </button>
 
   <div class="content">
     <div class="tableContainer">
       <h2 class="tableContainer-title">
         {{ "TABLES.TITLES.LIST_OF_GRADES" | translate }}
-        <button
-          (click)="switchCreation()"
-          class="tableContainer-table-addButton"
-          *ngIf="allGrades.length != 0"
-        >
-          <div
-            class="tableContainer-table-addButton-text"
-            *ngIf="!inCreation; else elseBlock"
-          >
-            {{ "TABLES.BUTTONS.ADD" | translate }}
-          </div>
-          <ng-template #elseBlock>{{
-            "TABLES.BUTTONS.CANCEL" | translate
-          }}</ng-template>
-        </button>
       </h2>
 
-      <button
-        (click)="switchCreation()"
-        class="tableContainer-addButton"
-        *ngIf="allGrades.length == 0"
-      >
-        {{ "TABLES.BUTTONS.ALERT_ADD" | translate }}
-      </button>
       <form [formGroup]="formGroup">
-        <table
-          class="tableContainer-table"
-          *ngIf="allGrades.length != 0 || inCreation"
-        >
+        <table class="tableContainer-table" *ngIf="grade != null">
           <tr>
             <th class="tableContainer-table-th">Id</th>
             <th class="tableContainer-table-th">
@@ -59,77 +42,7 @@
             </th>
           </tr>
 
-          <tr *ngIf="inCreation">
-            <td class="tableContainer-table-td">+</td>
-            <td class="tableContainer-table-td">
-              <input
-                id="gradeOne"
-                type="number"
-                formControlName="gradeOne"
-                [ngStyle]="{
-                  borderBottom:
-                    formGroup.get('gradeOne')?.touched ||
-                    formGroup.get('gradeOne')?.errors
-                      ? '0.15rem red solid'
-                      : 'none'
-                }"
-              />
-            </td>
-            <td class="tableContainer-table-td">
-              <input
-                id="gradeTwo"
-                type="number"
-                formControlName="gradeTwo"
-                [ngStyle]="{
-                  borderBottom:
-                    formGroup.get('gradeTwo')?.touched ||
-                    formGroup.get('gradeTwo')?.errors
-                      ? '0.15rem red solid'
-                      : 'none'
-                }"
-              />
-            </td>
-            <td class="tableContainer-table-td">
-              <input
-                id="gradeThree"
-                type="number"
-                formControlName="gradeThree"
-                [ngStyle]="{
-                  borderBottom:
-                    formGroup.get('gradeThree')?.touched ||
-                    formGroup.get('gradeThree')?.errors
-                      ? '0.15rem red solid'
-                      : 'none'
-                }"
-              />
-            </td>
-            <td class="tableContainer-table-td">
-              <input
-                id="gradeFour"
-                type="number"
-                formControlName="gradeFour"
-                [ngStyle]="{
-                  borderBottom:
-                    formGroup.get('gradeFour')?.touched ||
-                    formGroup.get('gradeFour')?.errors
-                      ? '0.15rem red solid'
-                      : 'none'
-                }"
-              />
-            </td>
-            <td class="tableContainer-table-td">
-              <button
-                type="submit"
-                (click)="add()"
-                [disabled]="!formGroup.valid"
-                class="tableContainer-table-confirmButton"
-              >
-                {{ "TABLES.BUTTONS.CONFIRM" | translate }}
-              </button>
-            </td>
-          </tr>
-
-          <tr *ngFor="let grade of allGrades">
+          <tr>
             <ng-container
               *ngIf="copyEdit == null || grade.id != copyEdit.id || !inEdit"
             >
@@ -143,15 +56,9 @@
               <td class="tableContainer-table-td">
                 <button
                   (click)="switchEdit(grade)"
-                  class="tableContainer-table-editButton"
+                  class="tableContainer-table-editButtonSingle"
                 >
                   {{ "TABLES.BUTTONS.EDIT" | translate }}
-                </button>
-                <button
-                  (click)="delete(grade.id)"
-                  class="tableContainer-table-deleteButton"
-                >
-                  {{ "TABLES.BUTTONS.DELETE" | translate }}
                 </button>
               </td>
             </ng-container>

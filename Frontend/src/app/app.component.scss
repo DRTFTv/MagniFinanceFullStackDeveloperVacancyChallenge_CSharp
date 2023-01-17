@@ -95,6 +95,15 @@
       justify-content: center;
       align-items: center;
       gap: 0.5rem;
+
+      i {
+        /*size - position*/
+
+        /*style*/
+        color: var(--1-color);
+
+        /*grid*/
+      }
     }
 
     .languageSwitch-title:hover {
@@ -107,7 +116,12 @@
       /*grid*/
 
       i {
+        /*size - position*/
+
+        /*style*/
         color: var(--2-color);
+
+        /*grid*/
       }
     }
 
@@ -431,6 +445,38 @@
   border: none;
   background-color: green;
   border-radius: 0.5rem;
+
+  /*grid*/
+}
+
+.tableContainer-table-editButtonSingle {
+  /*size - position*/
+  width: 100%;
+  padding: 0.5rem;
+
+  /*style*/
+  border: none;
+  background-color: orange;
+  border-radius: 0.5rem;
+
+  /*grid*/
+}
+
+.tableContainer-table-returnButton {
+  /*size - position*/
+  padding: 0.5rem;
+
+  /*style*/
+  border: none;
+  color: var(--2-color);
+  /*grid*/
+}
+
+.tableContainer-table-returnButton-icon {
+  /*size - position*/
+
+  /*style*/
+  color: var(--2-color);
 
   /*grid*/
 }

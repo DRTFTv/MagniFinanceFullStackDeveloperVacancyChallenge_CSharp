@@ -12,7 +12,10 @@
     "TEACHERS": "Teachers",
     "COURSES": "Courses",
     "SUBJECTS": "Subjects",
-    "GRADES": "Grades"
+    "GRADES": "Grades",
+    "BUTTONS": {
+      "RETURN": "Return"
+    }
   },
   "SIDEBAR": {
     "PAGES": "Pages:"

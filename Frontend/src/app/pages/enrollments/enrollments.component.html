@@ -145,14 +145,14 @@
                     {{ enrollment.grade.gradeFour }}
                   </td>
                   <td class="tableContainer-table-td">
-                    {{ enrollment.grade.gradeAvarege }}
+                    {{ enrollment.grade.gradeAvarege | number : "1.2-2" }}
                   </td>
                 </tr>
               </Table>
             </td>
             <td class="tableContainer-table-td">
               <button
-                (click)="redirectEdit()"
+                (click)="redirectEdit(enrollment.grade.gradeId)"
                 class="tableContainer-table-editButton"
               >
                 {{ "TABLES.BUTTONS.EDIT_GRADES" | translate }}

@@ -11,6 +11,7 @@ import {
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subjects } from 'src/app/models/subjects';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-enrollments',
@@ -32,7 +33,7 @@ export class EnrollmentsComponent {
     private enrollmentsService: EnrollmentsService,
     private studentsService: StudentsService,
     private subjectsService: SubjectsService,
-    private gradesService: GradesService
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -54,7 +55,9 @@ export class EnrollmentsComponent {
     this.subjectsGetAll();
   }
 
-  redirectEdit() {}
+  redirectEdit(GradeId: number) {
+    this.router.navigate(['/grades/byid', GradeId]);
+  }
 
   add() {
     this.enrollmentsService

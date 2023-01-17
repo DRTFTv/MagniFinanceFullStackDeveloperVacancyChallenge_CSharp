@@ -16,6 +16,7 @@ import { CoursesComponent } from './pages/courses/courses.component';
 import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { GradesComponent } from './pages/grades/grades.component';
 import { EnrollmentsComponent } from './pages/enrollments/enrollments.component';
+import { GradeByIdComponent } from './pages/grades/grade-by-id/grade-by-id.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -31,6 +32,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SubjectsComponent,
     GradesComponent,
     EnrollmentsComponent,
+    GradeByIdComponent,
   ],
   imports: [
     BrowserModule,
