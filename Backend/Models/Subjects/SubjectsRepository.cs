@@ -72,15 +72,14 @@ namespace Backend.Models.Subjects
 
                 TeachersModel teacher = _universityDbContext.Teachers.Where(st => st.Id == s.TeacherId).FirstOrDefault();
 
-                _universityDbContext.Subjects.Where(s => s.CourseId == s.Id).ToList().ForEach(s =>
-                {
+                
                     _universityDbContext.Students_Subjects.Where(ss => ss.SubjectId == s.Id).ToList().ForEach(ss =>
                     {
                         if (numberOfStudents.Where(nos => nos.Id == ss.StudentId).FirstOrDefault() == null)
                             numberOfStudents.Add(_universityDbContext.Students.Where(s => s.Id == ss.StudentId).FirstOrDefault());
                         grades.Add(_universityDbContext.Grades.Where(g => g.Id == ss.GradeId).FirstOrDefault());
                     });
-                });
+                
 
 
                 grades.ForEach(g =>
