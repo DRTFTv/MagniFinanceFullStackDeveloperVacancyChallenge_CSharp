@@ -1,13 +1,13 @@
-import { GradesService } from './../../controllers/grades.service';
-import { SubjectsService } from './../../controllers/subjects.service';
+import { GradesService } from '../../../controllers/grades.service';
+import { SubjectsService } from '../../../controllers/subjects.service';
 import { StudentsService } from 'src/app/controllers/students.service';
 import { Students } from 'src/app/models/students';
-import { EnrollmentsService } from './../../controllers/enrollments.service';
+import { EnrollmentsService } from '../../../controllers/enrollments.service';
 import {
   EnrollmentAdd,
   EnrollmentsGetAll,
   EnrollmentUpdate,
-} from './../../models/enrollments';
+} from '../../../models/enrollments';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subjects } from 'src/app/models/subjects';

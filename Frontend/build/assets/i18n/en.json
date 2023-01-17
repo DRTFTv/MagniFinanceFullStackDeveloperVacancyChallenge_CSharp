@@ -1,0 +1,65 @@
+{
+  "PROJECT_NAME": "University",
+  "CURRENT_LANGUAGE": "English",
+  "SWITCH_LANGUAGES_BUTTON": {
+    "EN_LABEL": "English",
+    "PT_LABEL": "Portuguese"
+  },
+  "ROUTES": {
+    "HOME": "Home",
+    "STUDENTS": "Students",
+    "ENROLLMENTS": "Enrollments",
+    "TEACHERS": "Teachers",
+    "COURSES": "Courses",
+    "SUBJECTS": "Subjects",
+    "GRADES": "Grades",
+    "BUTTONS": {
+      "RETURN": "Return"
+    }
+  },
+  "SIDEBAR": {
+    "PAGES": "Pages:"
+  },
+  "TABLES": {
+    "TITLES": {
+      "LIST_OF_STUDENTS": "List of students",
+      "LIST_OF_ENROLLMENTS": "List of enrollments",
+      "LIST_OF_TEACHERS": "List of teachers",
+      "LIST_OF_COURSES": "List of courses",
+      "LIST_OF_SUBJECTS": "List of subjects",
+      "LIST_OF_GRADES": "List of grades"
+    },
+    "BUTTONS": {
+      "ALERT_ADD": "Empty list! Click here to add records.",
+      "ADD": "Add",
+      "EDIT": "Edit",
+      "EDIT_GRADES": "Edit grades",
+      "DELETE": "Delete",
+      "CANCEL": "Cancel",
+      "CONFIRM": "Confirm"
+    },
+    "COLUMN_NAMES": {
+      "NAME": "Name",
+      "STUDENTS_NAME": "Student's name",
+      "NUMBER_OF_TEACHERS": "Number of teachers",
+      "NUMBER_OF_STUDENTS": "Number of students",
+      "GRADE_AVARAGE": "Grade avarage",
+      "TEACHER_INFORMATION": "Teacher information",
+      "GRADE_TABLE": "Grades",
+      "SUBJECT": "Subject",
+      "GRADE": "Grade",
+      "BIRTHDATE": "Birth date",
+      "SALARY": "Salary - €",
+      "ACTIONS": "Actions",
+      "COURSE": "Course",
+      "TEACHER": "Teacher",
+      "REGISTRATION_NUMBER": "Registration number"
+    },
+    "VALUE_FORMATS": {
+      "NAME": "Name:",
+      "BIRTHDATE": "Birth date:",
+      "SALARY": "Salary: €",
+      "GRADES_EMPTY": "No note released!"
+    }
+  }
+}

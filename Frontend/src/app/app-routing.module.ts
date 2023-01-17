@@ -1,5 +1,5 @@
 import { GradeByIdComponent } from './pages/grades/grade-by-id/grade-by-id.component';
-import { EnrollmentsComponent } from './pages/enrollments/enrollments.component';
+import { EnrollmentsComponent } from './pages/students/enrollments/enrollments.component';
 import { GradesComponent } from './pages/grades/grades.component';
 import { Grades } from './models/grades';
 import { SubjectsComponent } from './pages/subjects/subjects.component';
@@ -15,10 +15,11 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent, title: 'Home' },
   { path: 'students', component: StudentsComponent, title: 'Students' },
   {
-    path: 'enrollments',
+    path: 'students/enrollments',
     component: EnrollmentsComponent,
     title: 'Enrollments',
   },
+
   { path: 'teachers', component: TeachersComponent, title: 'Teachers' },
   { path: 'courses', component: CoursesComponent, title: 'Courses' },
   { path: 'subjects', component: SubjectsComponent, title: 'Subjects' },

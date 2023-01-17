@@ -15,7 +15,7 @@ import { TeachersComponent } from './pages/teachers/teachers.component';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { GradesComponent } from './pages/grades/grades.component';
-import { EnrollmentsComponent } from './pages/enrollments/enrollments.component';
+import { EnrollmentsComponent } from './pages/students/enrollments/enrollments.component';
 import { GradeByIdComponent } from './pages/grades/grade-by-id/grade-by-id.component';
 
 export function HttpLoaderFactory(http: HttpClient) {

@@ -59,7 +59,11 @@ export class GradeByIdComponent {
     this.gradesService
       .getById(this.route.snapshot.params['id'])
       .subscribe((res) => {
-        this.grade = res;
+        if (res != null) {
+          this.grade = res;
+        } else {
+          this.router.navigate(['']);
+        }
       });
   }
 
@@ -81,6 +85,6 @@ export class GradeByIdComponent {
   }
 
   returnEnrollment() {
-    this.router.navigate(['/enrollments']);
+    this.router.navigate(['/students/enrollments']);
   }
 }

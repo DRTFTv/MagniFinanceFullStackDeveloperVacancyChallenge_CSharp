@@ -1,0 +1,65 @@
+{
+  "PROJECT_NAME": "Universidade",
+  "CURRENT_LANGUAGE": "Português",
+  "SWITCH_LANGUAGES_BUTTON": {
+    "EN_LABEL": "Inglês",
+    "PT_LABEL": "Português"
+  },
+  "ROUTES": {
+    "HOME": "Casa",
+    "STUDENTS": "Estudantes",
+    "ENROLLMENTS": "Matrículas",
+    "TEACHERS": "Professores",
+    "COURSES": "Cursos",
+    "SUBJECTS": "Disciplinas",
+    "GRADES": "Notas",
+    "BUTTONS": {
+      "RETURN": "Voltar"
+    }
+  },
+  "SIDEBAR": {
+    "PAGES": "Páginas:"
+  },
+  "TABLES": {
+    "TITLES": {
+      "LIST_OF_STUDENTS": "Lista de estudantes",
+      "LIST_OF_ENROLLMENTS": "Lista de matrículas",
+      "LIST_OF_TEACHERS": "Lista de professores",
+      "LIST_OF_COURSES": "Lista de cursos",
+      "LIST_OF_SUBJECTS": "Lista de disciplinas",
+      "LIST_OF_GRADES": "Lista de notas"
+    },
+    "BUTTONS": {
+      "ALERT_ADD": "Lista vazia! Clique aqui para adicionar registros.",
+      "ADD": "Adicionar",
+      "EDIT": "Editar",
+      "EDIT_GRADES": "Editar notas",
+      "DELETE": "Excluir",
+      "CANCEL": "Cancelar",
+      "CONFIRM": "Confirmar"
+    },
+    "COLUMN_NAMES": {
+      "NAME": "Nome",
+      "NUMBER_OF_TEACHERS": "Quantidade de professores",
+      "NUMBER_OF_STUDENTS": "Quantidade de alunos",
+      "GRADE_AVARAGE": "Média de notas",
+      "TEACHER_INFORMATION": "Informações do professor",
+      "GRADE_TABLE": "Notas",
+      "SUBJECT": "Disciplina",
+      "GRADE": "Nota",
+      "ACTIONS": "Ações",
+      "SALARY": "Salário - €",
+      "BIRTHDATE": "Data de nascimento",
+      "COURSE": "Curso",
+      "TEACHER": "Professor",
+      "STUDENTS": "Estudate",
+      "REGISTRATION_NUMBER": "Número de registro"
+    },
+    "VALUE_FORMATS": {
+      "NAME": "Nome:",
+      "BIRTHDATE": "Data de nascimento:",
+      "SALARY": "Salário: €",
+      "GRADES_EMPTY": "Nenhuma nota lançada!"
+    }
+  }
+}
