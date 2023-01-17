@@ -40,9 +40,24 @@ namespace Backend.Models.Subjects
             return true;
         }
 
-        public IEnumerable<SubjectsModel> GetAll()
+        public IEnumerable<SubjectsGetAllView> GetAll()
         {
-            return _universityDbContext.Subjects;
+            List<SubjectsGetAllView> subjects = new List<SubjectsGetAllView>();
+
+            _universityDbContext.Subjects.ToList().ForEach(s =>
+            {
+                subjects.Add(new SubjectsGetAllView
+                { 
+                    Id = s.Id,
+                    Name = s.Name,
+                    CourseId = s.CourseId ?? 0, 
+                    CourseName = _universityDbContext.Courses.Where(c => c.Id == s.CourseId).FirstOrDefault().Name, 
+                    TeacherId = s.TeacherId ?? 0, 
+                    TeacherName = _universityDbContext.Teachers.Where(t => t.Id == s.TeacherId).FirstOrDefault().Name, 
+                });
+            });
+
+            return subjects;
         }
 
         public IEnumerable<SubjectHomeGetAllView> HomeGetAll()
@@ -107,7 +122,7 @@ namespace Backend.Models.Subjects
             subjectModel.CourseId = Subject.CourseId ?? subjectModel.CourseId;
             subjectModel.TeacherId = Subject.TeacherId ?? subjectModel.TeacherId;
             subjectModel.CoursesNavigation = Subject.CourseId != null ? _universityDbContext.Courses.Where(s => s.Id == Subject.CourseId).FirstOrDefault() : subjectModel.CoursesNavigation;
-            subjectModel.TeachersNavigation = Subject.TeacherId != null ? _universityDbContext.Teachers.Where(s => s.Id == Subject.TeacherId).FirstOrDefault()  : subjectModel.TeachersNavigation;
+            subjectModel.TeachersNavigation = Subject.TeacherId != null ? _universityDbContext.Teachers.Where(s => s.Id == Subject.TeacherId).FirstOrDefault() : subjectModel.TeachersNavigation;
 
             _universityDbContext.Subjects.Update(subjectModel);
 

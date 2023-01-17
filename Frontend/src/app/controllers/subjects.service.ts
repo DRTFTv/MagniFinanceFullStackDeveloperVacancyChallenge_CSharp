@@ -1,4 +1,10 @@
-import { Subjects, SubjectsHome } from './../models/subjects';
+import {
+  Subjects,
+  SubjectsHome,
+  SubjectAdd,
+  SubjectUpdate,
+  SubjectsGetAll,
+} from './../models/subjects';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, retry } from 'rxjs';
@@ -10,19 +16,19 @@ import { GlobalService } from './global.service';
 export class SubjectsService {
   constructor(private http: HttpClient, private globalService: GlobalService) {}
 
-  add(Subjects: Subjects): Observable<Subjects> {
+  add(Subject: SubjectAdd): Observable<SubjectAdd> {
     const apiURL = `${this.globalService.URL}/Subjects/Add`;
 
     return this.http
-      .post<Subjects>(apiURL, Subjects)
+      .post<SubjectAdd>(apiURL, Subject)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 
-  getAll(): Observable<Subjects[]> {
+  getAll(): Observable<SubjectsGetAll[]> {
     const apiURL = `${this.globalService.URL}/Subjects/GetAll`;
 
     return this.http
-      .get<Subjects[]>(apiURL)
+      .get<SubjectsGetAll[]>(apiURL)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 
@@ -42,11 +48,11 @@ export class SubjectsService {
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 
-  updateById(Subjects: Subjects): Observable<Subjects> {
+  updateById(Subject: SubjectUpdate): Observable<SubjectUpdate> {
     const apiURL = `${this.globalService.URL}/Subjects/UpdateById`;
 
     return this.http
-      .put<Subjects>(apiURL, Subjects, this.globalService.httpOptions)
+      .put<SubjectUpdate>(apiURL, Subject, this.globalService.httpOptions)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 

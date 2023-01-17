@@ -1,18 +1,18 @@
-<div class="loadingPage" *ngIf="!allCourses">
+<div class="loadingPage" *ngIf="!allSubjects">
   <div class="loadingPage-loader"></div>
 </div>
 
-<div class="page" *ngIf="allCourses">
-  <h1 class="page-title">{{ "ROUTES.COURSES" | translate }}</h1>
+<div class="page" *ngIf="allSubjects">
+  <h1 class="page-title">{{ "ROUTES.SUBJECTS" | translate }}</h1>
 
   <div class="content">
     <div class="tableContainer">
       <h2 class="tableContainer-title">
-        {{ "TABLES.TITLES.LIST_OF_COURSES" | translate }}
+        {{ "TABLES.TITLES.LIST_OF_SUBJECTS" | translate }}
         <button
           (click)="switchCreation()"
           class="tableContainer-table-addButton"
-          *ngIf="allCourses.length != 0"
+          *ngIf="allSubjects.length != 0"
         >
           <div
             class="tableContainer-table-addButton-text"
@@ -29,18 +29,26 @@
       <button
         (click)="switchCreation()"
         class="tableContainer-addButton"
-        *ngIf="allCourses.length == 0"
+        *ngIf="allSubjects.length == 0"
       >
         {{ "TABLES.BUTTONS.ALERT_ADD" | translate }}
       </button>
       <form [formGroup]="formGroup">
         <table
           class="tableContainer-table"
-          *ngIf="allCourses.length != 0 || inCreation"
+          *ngIf="allSubjects.length != 0 || inCreation"
         >
           <tr>
             <th class="tableContainer-table-th">Id</th>
             <th class="tableContainer-table-th">
+              {{ "TABLES.COLUMN_NAMES.NAME" | translate }}
+            </th>
+            <th class="tableContainer-table-th">
+              {{ "TABLES.COLUMN_NAMES.COURSE" | translate }}: Id -
+              {{ "TABLES.COLUMN_NAMES.NAME" | translate }}
+            </th>
+            <th class="tableContainer-table-th">
+              {{ "TABLES.COLUMN_NAMES.TEACHER" | translate }}: Id -
               {{ "TABLES.COLUMN_NAMES.NAME" | translate }}
             </th>
             <th class="tableContainer-table-th tableContainer-table-td-actions">
@@ -65,6 +73,27 @@
               />
             </td>
             <td class="tableContainer-table-td">
+              <select id="courseId" formControlName="courseId" form="formGroup">
+                <option *ngFor="let course of allCourses" [value]="course.id">
+                  {{ course.id }} - {{ course.name }}
+                </option>
+              </select>
+            </td>
+            <td class="tableContainer-table-td">
+              <select
+                id="teacherId"
+                formControlName="teacherId"
+                form="formGroup"
+              >
+                <option
+                  *ngFor="let teacher of allTeachers"
+                  [ngValue]="teacher.id"
+                >
+                  {{ teacher.id }} - {{ teacher.name }}
+                </option>
+              </select>
+            </td>
+            <td class="tableContainer-table-td">
               <button
                 type="submit"
                 (click)="add()"
@@ -76,23 +105,30 @@
             </td>
           </tr>
 
-          <tr *ngFor="let course of allCourses">
+          <tr *ngFor="let subject of allSubjects">
             <ng-container
-              *ngIf="copyEdit == null || course.id != copyEdit.id || !inEdit"
+              *ngIf="copyEdit == null || subject.id != copyEdit.id || !inEdit"
             >
               <td class="tableContainer-table-td">
-                {{ course.id }}
+                {{ subject.id }}
               </td>
-              <td class="tableContainer-table-td">{{ course.name }}</td>
+              <td class="tableContainer-table-td">{{ subject.name }}</td>
+              <td class="tableContainer-table-td">
+                {{ subject.courseId }} - {{ subject.courseName }}
+              </td>
+              <td class="tableContainer-table-td">
+                {{ subject.teacherId }} -
+                {{ subject.teacherName }}
+              </td>
               <td class="tableContainer-table-td">
                 <button
-                  (click)="switchEdit(course)"
+                  (click)="switchEdit(subject)"
                   class="tableContainer-table-editButton"
                 >
                   {{ "TABLES.BUTTONS.EDIT" | translate }}
                 </button>
                 <button
-                  (click)="delete(course.id)"
+                  (click)="delete(subject.id)"
                   class="tableContainer-table-deleteButton"
                 >
                   {{ "TABLES.BUTTONS.DELETE" | translate }}
@@ -101,9 +137,9 @@
             </ng-container>
 
             <ng-container
-              *ngIf="copyEdit != null && course.id == copyEdit.id && inEdit"
+              *ngIf="copyEdit != null && subject.id == copyEdit.id && inEdit"
             >
-              <td class="tableContainer-table-td">{{ course.id }}</td>
+              <td class="tableContainer-table-td">{{ subject.id }}</td>
               <td class="tableContainer-table-td">
                 <input
                   id="name"
@@ -119,13 +155,38 @@
                 />
               </td>
               <td class="tableContainer-table-td">
+                <select
+                  id="courseId"
+                  formControlName="courseId"
+                  form="formGroup"
+                >
+                  <option *ngFor="let course of allCourses" [value]="course.id">
+                    {{ course.id }} - {{ course.name }}
+                  </option>
+                </select>
+              </td>
+              <td class="tableContainer-table-td">
+                <select
+                  id="teacherId"
+                  formControlName="teacherId"
+                  form="formGroup"
+                >
+                  <option
+                    *ngFor="let teacher of allTeachers"
+                    [ngValue]="teacher.id"
+                  >
+                    {{ teacher.id }} - {{ teacher.name }}
+                  </option>
+                </select>
+              </td>
+              <td class="tableContainer-table-td">
                 <button
                   (click)="edit()"
                   class="tableContainer-table-editButton"
                 >
                   {{ "TABLES.BUTTONS.EDIT" | translate }}</button
                 ><button
-                  (click)="switchEdit(course.id)"
+                  (click)="switchEdit(subject.id)"
                   class="tableContainer-table-deleteButton"
                 >
                   {{ "TABLES.BUTTONS.CANCEL" | translate }}

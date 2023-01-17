@@ -13,13 +13,15 @@ import { StudentsComponent } from './pages/students/students.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TeachersComponent } from './pages/teachers/teachers.component';
 import { CoursesComponent } from './pages/courses/courses.component';
+import { SubjectsComponent } from './pages/subjects/subjects.component';
+import { GradesComponent } from './pages/grades/grades.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, StudentsComponent, TeachersComponent, CoursesComponent],
+  declarations: [AppComponent, HomeComponent, StudentsComponent, TeachersComponent, CoursesComponent, SubjectsComponent, GradesComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

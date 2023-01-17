@@ -18,10 +18,10 @@
   },
   "TABLES": {
     "TITLES": {
-      "LIST_OF_COURSES": "Lista de cursos",
-      "LIST_OF_SUBJECTS": "Lista de disciplinas",
       "LIST_OF_STUDENTS": "Lista de estudantes",
-      "LIST_OF_TEACHERS": "Lista de professores"
+      "LIST_OF_TEACHERS": "Lista de professores",
+      "LIST_OF_COURSES": "Lista de cursos",
+      "LIST_OF_SUBJECTS": "Lista de disciplinas"
     },
     "BUTTONS": {
       "ALERT_ADD": "Lista vazia! Clique aqui para adicionar registros.",
@@ -38,11 +38,13 @@
       "GRADE_AVARAGE": "Média de notas",
       "TEACHER_INFORMATION": "Informações do professor",
       "GRADE_TABLE": "Notas",
-      "SUBJECTS": "Disciplina",
+      "SUBJECT": "Disciplina",
       "GRADE": "Nota",
       "ACTIONS": "Ações",
       "SALARY": "Salário - €",
-      "BIRTHDATE": "Data de nascimento"
+      "BIRTHDATE": "Data de nascimento",
+      "COURSE": "Curso",
+      "TEACHER": "Professor"
     },
     "VALUE_FORMATS": {
       "NAME": "Nome:",

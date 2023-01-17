@@ -493,9 +493,10 @@
   /*grid*/
 }
 
-input {
+input,
+select {
   /*size - position*/
-  width: 90%;
+  width: 100%;
   height: 100%;
   padding: 0.5rem;
 
@@ -504,6 +505,15 @@ input {
   color: var(--2-color);
   border: none;
   border-radius: 0.5rem;
+
+  /*grid*/
+}
+
+option {
+  /*size - position*/
+
+  /*style*/
+  color: var(--2-color);
 
   /*grid*/
 }

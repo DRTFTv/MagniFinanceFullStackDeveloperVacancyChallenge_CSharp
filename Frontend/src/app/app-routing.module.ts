@@ -1,3 +1,4 @@
+import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { TeachersComponent } from './pages/teachers/teachers.component';
 import { StudentsComponent } from './pages/students/students.component';
@@ -11,6 +12,7 @@ const appRoutes: Routes = [
   { path: 'students', component: StudentsComponent, title: 'Students' },
   { path: 'teachers', component: TeachersComponent, title: 'Teachers' },
   { path: 'courses', component: CoursesComponent, title: 'Courses' },
+  { path: 'subjects', component: SubjectsComponent, title: 'Subjects' },
   { path: '**', redirectTo: '' },
 ];
 

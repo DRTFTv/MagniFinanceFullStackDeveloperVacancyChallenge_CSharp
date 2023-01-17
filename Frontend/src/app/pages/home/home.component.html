@@ -10,7 +10,11 @@
       <h2 class="tableContainer-title">
         {{ "TABLES.TITLES.LIST_OF_COURSES" | translate }}
       </h2>
-      <button class="tableContainer-addButton" *ngIf="allCourses.length == 0">
+      <button
+        [routerLink]="['/courses']"
+        class="tableContainer-addButton"
+        *ngIf="allCourses.length == 0"
+      >
         {{ "TABLES.BUTTONS.ALERT_ADD" | translate }}
       </button>
       <table class="tableContainer-table" *ngIf="allCourses.length != 0">
@@ -43,7 +47,11 @@
       <h2 class="tableContainer-title">
         {{ "TABLES.TITLES.LIST_OF_SUBJECTS" | translate }}
       </h2>
-      <button class="tableContainer-addButton" *ngIf="allSubjects.length == 0">
+      <button
+        [routerLink]="['/subjects']"
+        class="tableContainer-addButton"
+        *ngIf="allSubjects.length == 0"
+      >
         {{ "TABLES.BUTTONS.ALERT_ADD" | translate }}
       </button>
       <table class="tableContainer-table" *ngIf="allSubjects.length != 0">
@@ -112,7 +120,7 @@
             <Table class="tableContainer-table">
               <tr>
                 <th class="tableContainer-table-th">
-                  {{ "TABLES.COLUMN_NAMES.SUBJECTS" | translate }}
+                  {{ "TABLES.COLUMN_NAMES.SUBJECT" | translate }}
                 </th>
                 <th class="tableContainer-table-th">
                   {{ "TABLES.COLUMN_NAMES.GRADE" | translate }} 1

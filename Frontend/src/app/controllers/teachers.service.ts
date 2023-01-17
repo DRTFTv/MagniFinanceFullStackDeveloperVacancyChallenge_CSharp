@@ -43,7 +43,7 @@ export class TeachersService {
   }
 
   deleteById(Id: number): Observable<Teachers> {
-    const apiURL = `${this.globalService.URL}/Teachers/DeleteById/{Id}`;
+    const apiURL = `${this.globalService.URL}/Teachers/DeleteById/${Id}`;
 
     return this.http
       .delete<Teachers>(apiURL, this.globalService.httpOptions)
