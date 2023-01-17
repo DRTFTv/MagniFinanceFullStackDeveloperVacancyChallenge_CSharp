@@ -7,6 +7,7 @@ using Backend.Models.Students.Students;
 using Backend.Models.Students_Subjects;
 using Backend.Models.Subjects;
 using Backend.Models.Teachers;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend
@@ -58,7 +59,11 @@ namespace Backend
 
             app.UseRouting();
 
-            app.UseCors("CorsPolicy");
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true));
+
             app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
