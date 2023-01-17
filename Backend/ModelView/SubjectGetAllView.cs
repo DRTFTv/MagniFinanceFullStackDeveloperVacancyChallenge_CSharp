@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Backend.ModelView
 {
-    public class SubjectsGetAllView
+    public class SubjectGetAllView
     {
         [Required(ErrorMessage = "{0} is required")]
         public int Id { get; set; }

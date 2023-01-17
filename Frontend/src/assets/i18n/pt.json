@@ -8,6 +8,7 @@
   "ROUTES": {
     "HOME": "Casa",
     "STUDENTS": "Estudantes",
+    "ENROLLMENTS": "Matrículas",
     "TEACHERS": "Professores",
     "COURSES": "Cursos",
     "SUBJECTS": "Disciplinas",
@@ -19,6 +20,7 @@
   "TABLES": {
     "TITLES": {
       "LIST_OF_STUDENTS": "Lista de estudantes",
+      "LIST_OF_ENROLLMENTS": "Lista de matrículas",
       "LIST_OF_TEACHERS": "Lista de professores",
       "LIST_OF_COURSES": "Lista de cursos",
       "LIST_OF_SUBJECTS": "Lista de disciplinas",
@@ -28,6 +30,7 @@
       "ALERT_ADD": "Lista vazia! Clique aqui para adicionar registros.",
       "ADD": "Adicionar",
       "EDIT": "Editar",
+      "EDIT_GRADES": "Editar notas",
       "DELETE": "Excluir",
       "CANCEL": "Cancelar",
       "CONFIRM": "Confirmar"
@@ -45,12 +48,15 @@
       "SALARY": "Salário - €",
       "BIRTHDATE": "Data de nascimento",
       "COURSE": "Curso",
-      "TEACHER": "Professor"
+      "TEACHER": "Professor",
+      "STUDENTS": "Estudate",
+      "REGISTRATION_NUMBER": "Número de registro"
     },
     "VALUE_FORMATS": {
       "NAME": "Nome:",
       "BIRTHDATE": "Data de nascimento:",
-      "SALARY": "Salário: €"
+      "SALARY": "Salário: €",
+      "GRADES_EMPTY": "Nenhuma nota lançada!"
     }
   }
 }

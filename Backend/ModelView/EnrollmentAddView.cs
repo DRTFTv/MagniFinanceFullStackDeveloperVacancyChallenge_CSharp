@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Backend.ModelView
 {
-    public class EnrollStudentView
+    public class EnrollmentAddView
     {
         [Required(ErrorMessage = "{0} is required")]
         public int? StudentId { get; set; }

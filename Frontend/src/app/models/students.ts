@@ -7,10 +7,10 @@ export interface Students {
 export interface StudentsHome {
   id: number;
   name: string;
-  grades: gradeForDiscipline[];
+  grades: gradesForDiscipline[];
 }
 
-export interface gradeForDiscipline {
+export interface gradesForDiscipline {
   subjectName: string;
   gradeOne: number;
   gradeTwo: number;

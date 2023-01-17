@@ -116,23 +116,26 @@
         <tr *ngFor="let student of allStudents">
           <td class="tableContainer-table-td">{{ student.id }}</td>
           <td class="tableContainer-table-td">{{ student.name }}</td>
-          <td class="tableContainer-table-td">
+          <td
+            *ngIf="student.grades.length != 0"
+            class="tableContainer-table-td"
+          >
             <Table class="tableContainer-table">
               <tr>
                 <th class="tableContainer-table-th">
                   {{ "TABLES.COLUMN_NAMES.SUBJECT" | translate }}
                 </th>
                 <th class="tableContainer-table-th">
-                  {{ "TABLES.COLUMN_NAMES.GRADE" | translate }} 1
+                  1º {{ "TABLES.COLUMN_NAMES.GRADE" | translate }}
                 </th>
                 <th class="tableContainer-table-th">
-                  {{ "TABLES.COLUMN_NAMES.GRADE" | translate }} 2
+                  2º {{ "TABLES.COLUMN_NAMES.GRADE" | translate }}
                 </th>
                 <th class="tableContainer-table-th">
-                  {{ "TABLES.COLUMN_NAMES.GRADE" | translate }} 3
+                  3º {{ "TABLES.COLUMN_NAMES.GRADE" | translate }}
                 </th>
                 <th class="tableContainer-table-th">
-                  {{ "TABLES.COLUMN_NAMES.GRADE" | translate }} 4
+                  4º {{ "TABLES.COLUMN_NAMES.GRADE" | translate }}
                 </th>
                 <th class="tableContainer-table-th">
                   {{ "TABLES.COLUMN_NAMES.GRADE_AVARAGE" | translate }}
@@ -144,13 +147,23 @@
                 </td>
                 <td class="tableContainer-table-td">{{ grades.gradeOne }}</td>
                 <td class="tableContainer-table-td">{{ grades.gradeTwo }}</td>
-                <td class="tableContainer-table-td">{{ grades.gradeThree }}</td>
-                <td class="tableContainer-table-td">{{ grades.gradeFour }}</td>
+                <td class="tableContainer-table-td">
+                  {{ grades.gradeThree }}
+                </td>
+                <td class="tableContainer-table-td">
+                  {{ grades.gradeFour }}
+                </td>
                 <td class="tableContainer-table-td">
                   {{ grades.gradeAvarege }}
                 </td>
               </tr>
             </Table>
+          </td>
+          <td
+            *ngIf="student.grades.length == 0"
+            class="tableContainer-table-td"
+          >
+            {{ "TABLES.VALUE_FORMATS.GRADES_EMPTY" | translate }}
           </td>
         </tr>
       </table>

@@ -40,13 +40,13 @@ namespace Backend.Models.Subjects
             return true;
         }
 
-        public IEnumerable<SubjectsGetAllView> GetAll()
+        public IEnumerable<SubjectGetAllView> GetAll()
         {
-            List<SubjectsGetAllView> subjects = new List<SubjectsGetAllView>();
+            List<SubjectGetAllView> subjects = new List<SubjectGetAllView>();
 
             _universityDbContext.Subjects.ToList().ForEach(s =>
             {
-                subjects.Add(new SubjectsGetAllView
+                subjects.Add(new SubjectGetAllView
                 { 
                     Id = s.Id,
                     Name = s.Name,

@@ -11,10 +11,10 @@ namespace Backend.ModelView
         public string Name { get; set; }
 
         [Required(ErrorMessage = "{0} is required")]
-        public List<GradeForDiscipline> Grades { get; set; }
+        public List<GradesForDiscipline> Grades { get; set; }
     }
 
-    public class GradeForDiscipline
+    public class GradesForDiscipline
     {
         [Required(ErrorMessage = "{0} is required")]
         public string SubjectName { get; set; }

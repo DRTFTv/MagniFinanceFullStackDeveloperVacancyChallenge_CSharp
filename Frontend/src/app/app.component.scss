@@ -206,9 +206,42 @@
 
       /*grid*/
     }
+
+    .sidebar-subitem {
+      /*size - position*/
+      width: 90%;
+      padding: 0.5rem;
+      align-self: flex-end;
+
+      /*style*/
+      border-left: 0.15rem var(--2-color) solid;
+      color: #6360bf;
+      text-align: center;
+      font-weight: bold;
+      text-decoration: none;
+
+      /*grid*/
+    }
+
     .sidebar-item:hover {
       /*size - position*/
       width: 100%;
+      padding: 0.5rem;
+
+      /*style*/
+      border-left: 1.5rem var(--2-color) solid;
+      color: var(--2-color);
+      background-color: var(--1-color);
+      text-align: center;
+      font-weight: bold;
+      text-decoration: none;
+
+      /*grid*/
+    }
+
+    .sidebar-subitem:hover {
+      /*size - position*/
+      width: 90%;
       padding: 0.5rem;
 
       /*style*/

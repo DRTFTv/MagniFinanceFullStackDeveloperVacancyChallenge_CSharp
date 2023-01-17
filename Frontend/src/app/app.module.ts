@@ -15,13 +15,23 @@ import { TeachersComponent } from './pages/teachers/teachers.component';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { GradesComponent } from './pages/grades/grades.component';
+import { EnrollmentsComponent } from './pages/enrollments/enrollments.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, StudentsComponent, TeachersComponent, CoursesComponent, SubjectsComponent, GradesComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    StudentsComponent,
+    TeachersComponent,
+    CoursesComponent,
+    SubjectsComponent,
+    GradesComponent,
+    EnrollmentsComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,

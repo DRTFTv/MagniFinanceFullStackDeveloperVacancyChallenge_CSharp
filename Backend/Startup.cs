@@ -3,6 +3,7 @@ using Backend.Models.Courses;
 using Backend.Models.Grades;
 using Backend.Models.Students;
 using Backend.Models.Students.Students;
+using Backend.Models.Students_Subjects;
 using Backend.Models.Subjects;
 using Backend.Models.Teachers;
 
@@ -36,6 +37,7 @@ namespace Backend
 
             ///
             services.AddScoped<IStudentsRepository, StudentsRepository>();
+            services.AddScoped<IStudents_SubjectsRepository, Students_SubjectsRepository>();
             services.AddScoped<ITeachersRepository, TeachersRepository>();
             services.AddScoped<ICoursesRepository, CoursesRepository>();
             services.AddScoped<ISubjectsRepository, SubjectsRepository>();

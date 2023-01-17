@@ -1,14 +1,8 @@
 ﻿
-using Backend.Models.Courses;
 using Backend.Models.Grades;
 using Backend.Models.Students.Students;
 using Backend.Models.Students_Subjects;
-using Backend.Models.Subjects;
-using Backend.Models.Teachers;
 using Backend.ModelView;
-using Microsoft.Data.SqlClient.DataClassification;
-using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata.Ecma335;
 
 namespace Backend.Models.Students
 {
@@ -16,11 +10,13 @@ namespace Backend.Models.Students
     {
         private readonly UniversityDbContext _universityDbContext;
         private IGradesRepository _grades;
+        private IStudents_SubjectsRepository _students_subjects;
 
-        public StudentsRepository(UniversityDbContext universityDbContext, IGradesRepository grades)
+        public StudentsRepository(UniversityDbContext universityDbContext, IGradesRepository grades, IStudents_SubjectsRepository students_subjects)
         {
             _universityDbContext = universityDbContext;
             _grades = grades;
+            _students_subjects = students_subjects;
         }
 
         public bool Add(StudentAddView Student)
@@ -51,22 +47,22 @@ namespace Backend.Models.Students
 
             _universityDbContext.Students.ToList().ForEach(c =>
             {
-                List<GradeForDiscipline> gradeForDiscipline = new List<GradeForDiscipline>();
+                List<GradesForDiscipline> gradesForDiscipline = new List<GradesForDiscipline>();
 
-                List<Students_SubjectsModel> students_SubjectsModel = GetAllStudentEnrollmentsByStudentId(c.Id).ToList();
+                List<Students_SubjectsModel> students_SubjectsModel = _students_subjects.GetAllByStudentId(c.Id).ToList();
 
                 students_SubjectsModel.ForEach(ss =>
                 {
-                    GradesModel grades = _universityDbContext.Grades.Where(g => g.Id == ss.GradeId).FirstOrDefault();
+                    GradesModel grade = _universityDbContext.Grades.Where(g => g.Id == ss.GradeId).FirstOrDefault();
 
-                    gradeForDiscipline.Add(new GradeForDiscipline()
+                    gradesForDiscipline.Add(new GradesForDiscipline()
                     {
                         SubjectName = _universityDbContext.Subjects.Where(s => s.Id == ss.SubjectId).FirstOrDefault().Name,
-                        GradeOne = grades.GradeOne,
-                        GradeTwo = grades.GradeTwo,
-                        GradeThree = grades.GradeThree,
-                        GradeFour = grades.GradeFour,
-                        GradeAvarege = grades.GradeOne + grades.GradeTwo + grades.GradeThree + grades.GradeFour / 4,
+                        GradeOne = grade.GradeOne,
+                        GradeTwo = grade.GradeTwo,
+                        GradeThree = grade.GradeThree,
+                        GradeFour = grade.GradeFour,
+                        GradeAvarege = (grade.GradeOne + grade.GradeTwo + grade.GradeThree + grade.GradeFour) / 4,
                     });
                 });
 
@@ -74,7 +70,7 @@ namespace Backend.Models.Students
                 {
                     Id = c.Id,
                     Name = c.Name,
-                    Grades = gradeForDiscipline,
+                    Grades = gradesForDiscipline,
                 });
             });
 
@@ -122,114 +118,6 @@ namespace Backend.Models.Students
             _universityDbContext.SaveChanges();
 
             return true;
-        }
-
-        ///
-        public bool AddEnrollStudent(EnrollStudentView EnrollStudent)
-        {
-            if (EnrollStudent == null)
-                return false;
-
-            int gradeId = _grades.AddReturnId();
-
-            StudentsModel studentsModel = _universityDbContext.Students.Where(s => s.Id == EnrollStudent.StudentId).FirstOrDefault();
-            SubjectsModel subjectsModel = _universityDbContext.Subjects.Where(s => s.Id == EnrollStudent.SubjectId).FirstOrDefault();
-            GradesModel gradesModel = _universityDbContext.Grades.Where(s => s.Id == gradeId).FirstOrDefault();
-
-            if (studentsModel == null || subjectsModel == null || gradesModel == null)
-                return false;
-
-            _universityDbContext.Students_Subjects.Add(new Students_SubjectsModel
-            {
-                StudentId = EnrollStudent.StudentId,
-                SubjectId = EnrollStudent.SubjectId,
-                GradeId = gradeId,
-                StudentsNavigation = studentsModel,
-                SubjectsNavigation = subjectsModel,
-                GradesNavigation = _universityDbContext.Grades.Where(g => g.Id == gradeId).FirstOrDefault()
-            });
-
-            _universityDbContext.SaveChanges();
-
-            return true;
-        }
-
-        public IEnumerable<Students_SubjectsModel> GetAllStudentEnrollments()
-        {
-            return _universityDbContext.Students_Subjects;
-        }
-
-        public Students_SubjectsModel GetStudentEnrollmentByRegistrationNumber(int RegistrationNumber)
-        {
-            return _universityDbContext.Students_Subjects.Where(s => s.RegistrationNumber == RegistrationNumber).FirstOrDefault();
-        }
-
-        public IEnumerable<Students_SubjectsModel> GetAllStudentEnrollmentsByStudentId(int StudentId)
-        {
-            return _universityDbContext.Students_Subjects.Where(s => s.StudentId == StudentId);
-        }
-
-        public bool UpdateStudentEnrollmentByRegistrationNumber(UpdateStudentEnrollmentByIdModel EnrollStudent)
-        {
-            if (EnrollStudent == null)
-                return false;
-
-            Students_SubjectsModel student_SubjectModel = _universityDbContext.Students_Subjects.Where(ss => ss.RegistrationNumber == EnrollStudent.RegistrationNumber).FirstOrDefault();
-
-            if (student_SubjectModel == null)
-                return false;
-
-            student_SubjectModel.StudentId = EnrollStudent.StudentId ?? student_SubjectModel.StudentId;
-            student_SubjectModel.SubjectId = EnrollStudent.SubjectId ?? student_SubjectModel.SubjectId;
-            student_SubjectModel.GradeId = EnrollStudent.GradeId ?? student_SubjectModel.GradeId;
-            student_SubjectModel.StudentsNavigation = EnrollStudent.StudentId != null ? _universityDbContext.Students.Where(s => s.Id == EnrollStudent.StudentId).FirstOrDefault() : student_SubjectModel.StudentsNavigation;
-            student_SubjectModel.SubjectsNavigation = EnrollStudent.SubjectId != null ? _universityDbContext.Subjects.Where(s => s.Id == EnrollStudent.SubjectId).FirstOrDefault() : student_SubjectModel.SubjectsNavigation;
-            student_SubjectModel.GradesNavigation = EnrollStudent.GradeId != null ? _universityDbContext.Grades.Where(g => g.Id == EnrollStudent.GradeId).FirstOrDefault() : student_SubjectModel.GradesNavigation;
-
-            _universityDbContext.Students_Subjects.Update(student_SubjectModel);
-
-            _universityDbContext.SaveChanges();
-
-            return true;
-        }
-
-        public bool DeleteStudentEnrollmentByRegistrationNumber(int RegistrationNumber)
-        {
-            if (RegistrationNumber <= 0)
-                return false;
-
-            Students_SubjectsModel student_SubjectModel = _universityDbContext.Students_Subjects.Where(s => s.RegistrationNumber == RegistrationNumber).FirstOrDefault();
-
-            if (student_SubjectModel == null)
-                return false;
-
-            _universityDbContext.Attach(student_SubjectModel);
-            _universityDbContext.Remove(student_SubjectModel);
-
-            _universityDbContext.SaveChanges();
-
-            return true;
-        }
-
-        public bool DeleteStudentEnrollmentByStudentId(int StudentId)
-        {
-            if (StudentId <= 0)
-                return false;
-
-            List<Students_SubjectsModel> student_SubjectModel = _universityDbContext.Students_Subjects.Where(s => s.SubjectId == StudentId).ToList();
-
-            if (!student_SubjectModel.Any())
-                return false;
-
-            student_SubjectModel.ForEach(ss =>
-            {
-                _universityDbContext.Attach(ss);
-                _universityDbContext.Remove(ss);
-            });
-
-            _universityDbContext.SaveChanges();
-
-            return true;
-        }
+        }        
     }
 }

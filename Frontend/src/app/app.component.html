@@ -49,6 +49,12 @@
         >{{ "ROUTES.STUDENTS" | translate }}</a
       >
       <a
+        [routerLink]="['/enrollments']"
+        [ngClass]="{ 'sidebar-item-current': currentRoute == '/enrollments' }"
+        class="sidebar-subitem"
+        >{{ "ROUTES.ENROLLMENTS" | translate }}</a
+      >
+      <a
         [routerLink]="['/teachers']"
         [ngClass]="{ 'sidebar-item-current': currentRoute == '/teachers' }"
         class="sidebar-item"

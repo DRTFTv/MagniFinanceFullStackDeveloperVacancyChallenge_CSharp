@@ -31,7 +31,7 @@ namespace Backend.Controllers
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
-            IEnumerable<SubjectsGetAllView> subjects = _repository.GetAll();
+            IEnumerable<SubjectGetAllView> subjects = _repository.GetAll();
 
             return Ok(subjects);
         }
