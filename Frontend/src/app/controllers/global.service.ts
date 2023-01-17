@@ -8,7 +8,7 @@ import { throwError } from 'rxjs';
 export class GlobalService {
   constructor() {}
 
-  URL = 'https://localhost:8080/api';
+  URL = 'https://localhost:5001/api';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

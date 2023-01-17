@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\dany_\Source\MagniFinanceFullStackDeveloperVacancyChallenge\Backend\bin\Release\net6.0\publish\</_PublishTargetUrl>
+    <History>True|2023-01-17T20:56:30.1484929Z;True|2023-01-17T17:56:04.9229493-03:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="UniversityDbContext">
+      <Value>Server=%28localdb%29\mssqllocaldb%3bDatabase=university_db%3bTrusted_Connection=True%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

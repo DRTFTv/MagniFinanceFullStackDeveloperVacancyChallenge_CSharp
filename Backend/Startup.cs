@@ -1,4 +1,5 @@
 ﻿using Backend.Hubs;
+using Backend.Models;
 using Backend.Models.Courses;
 using Backend.Models.Grades;
 using Backend.Models.Students;
@@ -6,6 +7,7 @@ using Backend.Models.Students.Students;
 using Backend.Models.Students_Subjects;
 using Backend.Models.Subjects;
 using Backend.Models.Teachers;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend
 {
@@ -46,6 +48,8 @@ namespace Backend
 
         public void Configure(WebApplication app, IWebHostEnvironment env)
         {
+            UpdateDatabase(app);
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
@@ -64,6 +68,17 @@ namespace Backend
             });
 
             app.Run();
+        }
+
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<UniversityDbContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
         }
     }
 }
