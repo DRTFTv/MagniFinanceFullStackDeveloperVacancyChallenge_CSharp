@@ -1,3 +1,4 @@
+import { GradeAdd, GradeUpdate } from 'src/app/models/grades';
 import { Grades } from './../models/grades';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -10,11 +11,11 @@ import { catchError, Observable, retry } from 'rxjs';
 export class GradesService {
   constructor(private http: HttpClient, private globalService: GlobalService) {}
 
-  add(Grades: Grades): Observable<Grades> {
+  add(Grade: GradeAdd): Observable<GradeAdd> {
     const apiURL = `${this.globalService.URL}/Grades/Add`;
 
     return this.http
-      .post<Grades>(apiURL, Grades)
+      .post<GradeAdd>(apiURL, Grade)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 
@@ -34,11 +35,11 @@ export class GradesService {
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 
-  updateById(Grades: Grades): Observable<Grades> {
+  updateById(Grade: GradeUpdate): Observable<Grades> {
     const apiURL = `${this.globalService.URL}/Grades/UpdateById`;
 
     return this.http
-      .put<Grades>(apiURL, Grades, this.globalService.httpOptions)
+      .put<Grades>(apiURL, Grade, this.globalService.httpOptions)
       .pipe(retry(1), catchError(this.globalService.errorHandler));
   }
 
