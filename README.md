@@ -32,7 +32,8 @@
 * Ainda no terminal, navegue até a pasta raiz do projeto;
 * Inicie o servidor com o pacote instalado (*http-server*):
   * Comando: $ http-server ./Frontend/build/ --cors
-* Após o servidor ser iniciado, no terminal, em *Available on:* copie uma das URLs de hospedagem;
+* Após o servidor ser iniciado, no terminal, em *Available on:* copie a última das três URLs de hospedagem listadas;
+ * Observação: A última deve ser seleccionada por questões de configuração de CORS, que forçam uma identificação:
 * Abra um navegador:
   * Exemplo: Chrome, Edge, Brave, Opera, etc;
 * Cole a URL e pesquise.
@@ -41,7 +42,8 @@
 * Abra o repositório do projecto;
 * Localize o arquivo "Start Frontend.bat";
   * Observação: Este arquivo contém a parte de instalação e inicialização do servidor, especificamente os dois comando utilizados na etapa **Manual**.
-* Após o servidor ser iniciado, no terminal, em *Available on:* copie uma das URLs de hospedagem;
+* Após o servidor ser iniciado, no terminal, em *Available on:* copie a última das três URLs de hospedagem listadas:
+ * Observação: A última deve ser seleccionada por questões de configuração de CORS, que forçam uma identificação;
 * Abra um navegador:
   * Exemplo: Chrome, Edge, Brave, Opera, etc;
 * Cole a URL e pesquise.
