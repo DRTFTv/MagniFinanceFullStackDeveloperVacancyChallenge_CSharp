@@ -1,4 +1,4 @@
-# Desafio técnico - Sistema Universidade - Magni Finance
+# Sistema Universidade - ASP.NET API (MVC) & ANGULAR 15.1.0
 
 ## Backend - ASP.NET API (MVC)
 
