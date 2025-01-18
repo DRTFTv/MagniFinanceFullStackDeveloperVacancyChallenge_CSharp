@@ -1,51 +1,55 @@
-# Sistema Universidade - ASP.NET API (MVC) & ANGULAR 15.1.0
+### University System - ASP.NET API (MVC) & ANGULAR 15.1.0
 
 ## Backend - ASP.NET API (MVC)
 
-### Requisitos - ✅
-* OS: Windows32 x64
-* NET: 6.0
+### Requirements - ✅
+- OS: Windows32 x64  
+- NET: 6.0  
+
 ---
 
-### Executar - ⚡
-* Abra o repositório do projecto;
-* Localize o arquivo "Start Backend.exe":
-  * Observação: Este arquivo é um atalho do executável do projecto já compilado que se encontra na pasta ./Backend/bin/Release/net6.0/Backend.exe;
-* Execute-o.
+### Run - ⚡
+1. Open the project repository.  
+2. Locate the file "Start Backend.exe":  
+   - Note: This file is a shortcut to the compiled project executable located in `./Backend/bin/Release/net6.0/Backend.exe`.  
+3. Run the file.
+
 ---
 
 ## Frontend - Angular 15.1.0
 
-### Requisitos - ✅
-* OS: Windows32 x64
-* NODE: 18.12.1
-* NPM: 8.19.2
-* Angular CLI: 15.0.5
+### Requirements - ✅
+- OS: Windows32 x64  
+- NODE: 18.12.1  
+- NPM: 8.19.2  
+- Angular CLI: 15.0.5  
+
 ---
 
-### Executar - ⚡
+### Run - ⚡
+
 #### Manual
-* Abra um terminal de código:
-  * Exemplo: CMD, Windows terminal, Windows PowerShell, etc;
-* Instale globalmente via o manejador de pacotes NPM o pacote *http-server*:
-  * Comando: $ npm install --global http-server ;
-* Ainda no terminal, navegue até a pasta raiz do projeto;
-* Inicie o servidor com o pacote instalado (*http-server*):
-  * Comando: $ http-server ./Frontend/build/ --cors
-* Após o servidor ser iniciado, no terminal, em *Available on:* copie a última das três URLs de hospedagem listadas;
- * Observação: A última deve ser seleccionada por questões de configuração de CORS, que forçam uma identificação:
-* Abra um navegador:
-  * Exemplo: Chrome, Edge, Brave, Opera, etc;
-* Cole a URL e pesquise.
+1. Open a command-line terminal:  
+   - Examples: CMD, Windows Terminal, Windows PowerShell, etc.  
+2. Globally install the *http-server* package via NPM:  
+   - Command: `$ npm install --global http-server`  
+3. Navigate to the project's root folder in the terminal.  
+4. Start the server with the installed package (*http-server*):  
+   - Command: `$ http-server ./Frontend/build/ --cors`  
+5. After the server starts, in the terminal under *Available on:*, copy the last of the three listed hosting URLs:  
+   - Note: The last one should be selected due to CORS configuration requirements.  
+6. Open a browser:  
+   - Examples: Chrome, Edge, Brave, Opera, etc.  
+7. Paste the URL into the address bar and navigate to it.
 
-#### Automatizado via .bat
-* Abra o repositório do projecto;
-* Localize o arquivo "Start Frontend.bat";
-  * Observação: Este arquivo contém a parte de instalação e inicialização do servidor, especificamente os dois comando utilizados na etapa **Manual**.
-* Após o servidor ser iniciado, no terminal, em *Available on:* copie a última das três URLs de hospedagem listadas:
- * Observação: A última deve ser seleccionada por questões de configuração de CORS, que forçam uma identificação;
-* Abra um navegador:
-  * Exemplo: Chrome, Edge, Brave, Opera, etc;
-* Cole a URL e pesquise.
+#### Automated via .bat
+1. Open the project repository.  
+2. Locate the file "Start Frontend.bat":  
+   - Note: This file automates the installation and initialization of the server, specifically the two commands used in the **Manual** process.  
+3. After the server starts, in the terminal under *Available on:*, copy the last of the three listed hosting URLs:  
+   - Note: The last one should be selected due to CORS configuration requirements.  
+4. Open a browser:  
+   - Examples: Chrome, Edge, Brave, Opera, etc.  
+5. Paste the URL into the address bar and navigate to it.  
+
 ---
-
